@@ -14,7 +14,7 @@
 
 		<div id="header" class="clearfix">
 			<h1>
-				<a href="">MySite</a>
+				<a href="">ETUDE HOUSE</a>
 			</h1>
 
 			<!-- 
@@ -50,12 +50,12 @@
 				<!-- content-head 없음 -->
 				<div id="index">
 
-					<img id="profile-img" src="../../assets/image/profile.jpg">
+					<img id="profile-img" src="/mysite4/assets/image/ETUDE.jpg">
 
 					<div id="greetings">
 						<p class="text-xlarge">
 							<span class="bold">
-							안녕하세요!!<br>김수빈의 MySite에 오신 것을 환영합니다.（╹◡╹）♡ <br> <br> 
+							안녕하세요!!<br>김수빈의 ETUDE HOUSE에 오신 것을 환영합니다.（╹◡╹）♡ <br> <br> 
 							이 사이트는 웹 프로그램밍 실습과제 예제 사이트입니다.<br>
 							</span> <br> 사이트 소개, 회원가입, 방명록, 게시판으로 구성되어 있으며<br>
 							jsp serlvet(모델2) 방식으로 제작되었습니다.<br> <br> 

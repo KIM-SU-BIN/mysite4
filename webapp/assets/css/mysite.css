@@ -26,10 +26,10 @@ a:hover {text-decoration: none; color: #000000; }
 
 /* 해더(header: 로고, 로그인관련 버튼) */
 #header	h1 {font-size: 36px; font-weight: bold; line-height: 1.1;}
-#header	h1>a {float: left; margin: 10px 0px 0px 0px; font-size: 35px; color:#79B30B; }
+#header	h1>a {float: left; margin: 10px 0px 0px 0px; font-size: 35px; color:#CC6699; }
 #header ul {float: right;  }
 #header ul>li {float: left; margin: 25px 0px 0px 10px;}
-#header ul>li .btn_s {padding: 4px 6px 4px 6px; border: 1px solid #bfbfbf; border-radius: 2px; font-size: 10px; }
+#header ul>li .btn_s {padding: 4px 6px 4px 6px; border: 1px solid #FFCCCC; border-radius: 2px; font-size: 10px; }
 
 
 /* 네비(nav: 메인메뉴) */
