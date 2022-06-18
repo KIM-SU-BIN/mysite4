@@ -28,7 +28,7 @@
 			-->
 			<ul>
 				<li><a href="/mysite4/loginForm" class="btn_s">로그인</a></li>
-				<li><a href="" class="btn_s">회원가입</a></li>
+				<li><a href="/mysite4/joinForm" class="btn_s">회원가입</a></li>
 			</ul>
 
 		</div>
@@ -49,7 +49,7 @@
 			<!-- aside 없음 -->
 			<div id="full-content">
 
-				<!-- content-head 없음 -->
+				<!-- content-head 없음 --> 
 				<div id="index">
 
 					<img id="profile-img" src="/mysite4/assets/image/ETUDE.jpg">

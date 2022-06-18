@@ -5,10 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet"
-	type="text/css">
-<link href="/mysite4/assets/css/user.css" rel="stylesheet"
-	type="text/css">
+<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="/mysite4/assets/css/user.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -17,7 +15,7 @@
 
 		<div id="header" class="clearfix">
 			<h1>
-				<a href="">MySite</a>
+				<a href="/mysite4/main">MySite</a>
 			</h1>
 
 			<!-- 
@@ -29,7 +27,7 @@
 			-->
 			<ul>
 				<li><a href="/mysite4/loginForm" class="btn_s">로그인</a></li>
-				<li><a href="" class="btn_s">회원가입</a></li>
+				<li><a href="/mysite4/joinForm" class="btn_s">회원가입</a></li>
 			</ul>
 
 		</div>
@@ -73,7 +71,7 @@
 
 				<div id="user">
 					<div id="joinForm">
-						<form action="" method="">
+						<form action="" method="get">
 
 							<!-- 아이디 -->
 							<div class="form-group">

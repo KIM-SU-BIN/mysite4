@@ -28,7 +28,7 @@
 			-->
 			<ul>
 				<li><a href="/mysite4/loginForm" class="btn_s">로그인</a></li>
-				<li><a href="" class="btn_s">회원가입</a></li>
+				<li><a href="/mysite4/joinForm" class="btn_s">회원가입</a></li>
 			</ul>
 
 		</div>
@@ -72,7 +72,7 @@
 
 				<div id="user">
 					<div id="loginForm">
-						<form action="" method="">
+						<form action="" method="get">
 
 							<!-- 아이디 -->
 							<div class="form-group">
