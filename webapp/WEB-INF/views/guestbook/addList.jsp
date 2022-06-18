@@ -15,7 +15,7 @@
 
 		<div id="header" class="clearfix">
 			<h1>
-				<a href="">MySite</a>
+				<a href="/mysite4/main">MySite</a>
 			</h1>
 
 			<!-- 
@@ -48,7 +48,7 @@
 				<h2>방명록</h2>
 				<ul>
 					<li>일반방명록</li>
-					<li>ajax방명록</li>
+					<li>방명록</li>
 				</ul>
 			</div>
 			<!-- //aside -->
