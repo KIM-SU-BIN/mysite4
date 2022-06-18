@@ -15,7 +15,7 @@ public class MainController {
 	//메소드
 	
 	//메소드 일반
-	
+
 	//main 메인
 	@RequestMapping(value="/main", method = {RequestMethod.GET,RequestMethod.POST})
 	public String main() {
@@ -23,10 +23,6 @@ public class MainController {
 		
 		return "main/index";
 	}
-	
-	
-	
-	
 	
 //***************************************************************************************//	
 	//test
