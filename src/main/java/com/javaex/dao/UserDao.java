@@ -18,25 +18,34 @@ public class UserDao {
 	// 메소드
 
 	// 메소드 일반
-	//회원정보 가져오기 login 성공
+	// 로그아웃
+	public UserVo getUser(int no) {
+		System.out.println("UserDao.getUser()");
+
+		UserVo uVo = sqlSession.selectOne("user.getUser", no);
+
+		return uVo;
+	}
+
+	// 회원정보 가져오기 login 성공
 	public UserVo getUser(UserVo userVo) {
 		System.out.println("UserDao.getUser()");
-		
+
 		UserVo authVo = sqlSession.selectOne("user.getUser", userVo);
 		System.out.println(authVo);
-		
+
 		return authVo;
 
 	}
-	
-	//회원정보 저장(회원가입) insert
+
+	// 회원정보 저장(회원가입) insert
 	public int userInsert(UserVo userVo) {
 		System.out.println("UserDao.userInsert()");
 
 		int count = sqlSession.insert("user.insert", userVo);
 
 		System.out.println(userVo);
-		
+
 		return count;
 	}
 
