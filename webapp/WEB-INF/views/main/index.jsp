@@ -16,44 +16,10 @@
 
 	<div id="wrap">
 
-		<div id="header" class="clearfix">
-			<h1>
-				<a href="/mysite4/main">ETUDE HOUSE</a>
-			</h1>
-
-			<c:choose>
-				<c:when test="${sessionScope.authUser != null}">
-
-					<!-- 로그인 성공했을 때 -->
-					<ul>
-						<li>김수빈 님 안녕하세요^^</li>
-						<li><a href="" class="btn_s">로그아웃</a></li>
-						<li><a href="" class="btn_s">회원정보수정</a></li>
-					</ul>
-				</c:when>
-				<c:otherwise>
-
-					<!-- 로그인 실패 전 -->
-					<ul>
-						<li><a href="/mysite4/user/loginForm" class="btn_s">로그인</a></li>
-						<li><a href="/mysite4/user/joinForm" class="btn_s">회원가입</a></li>
-					</ul>
-				</c:otherwise>
-			</c:choose>
-
-
-
-		</div>
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<!-- //header -->
 
-		<div id="nav">
-			<ul class="clearfix">
-				<li><a href="">입사지원서</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="/mysite4/addList">방명록</a></li>
-			</ul>
-		</div>
+		<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 		<!-- //nav -->
 
 
@@ -92,8 +58,7 @@
 		</div>
 		<!-- //container -->
 
-
-		<div id="footer">Copyright ⓒ 2022 김수빈♡. All right reserved</div>
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- //footer -->
 
 	</div>
