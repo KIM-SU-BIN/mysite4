@@ -3,11 +3,26 @@
 
 <mapper namespace="user">
 
+	<!-- 회원정보 -->
+	<select id="getUser" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
+	<![CDATA[
+	
+		select  no,
+				name
+		from users
+		where id = #{id}
+		and password = #{password}
+		
+	]]>
+	</select>
+
+
+	<!-- 회원정보 저장 (회원가입) -->
 	<insert id="insert" parameterType="com.javaex.vo.UserVo">
 	<![CDATA[
 	
 		insert into users
-		values(seq_users_no.nextval, #{id},#{password},#{name},#{gender})
+		values(seq_users_no.nextval, #{id}, #{password}, #{name}, #{gender})
 		
 	]]>
 	</insert>

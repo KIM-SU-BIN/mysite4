@@ -3,19 +3,20 @@ package com.javaex.vo;
 public class UserVo {
 	
 	//필드
+	private int no;
 	private String id;
 	private String password;
 	private String name;
 	private String gender;
 	
 	
-	//생성자
 	public UserVo() {
 		
 	}
 	
-	public UserVo(String id, String password, String name, String gender) {
-		super();
+	
+	public UserVo(int no, String id, String password, String name, String gender) {
+		this.no = no;
 		this.id = id;
 		this.password = password;
 		this.name = name;
@@ -23,7 +24,13 @@ public class UserVo {
 	}
 	
 	
-	//메소드
+	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	public String getId() {
 		return id;
 	}
@@ -50,12 +57,13 @@ public class UserVo {
 	}
 	
 	
-	//메소드 일반
+	
+	
 	@Override
 	public String toString() {
-		return "UserVo [id=" + id + ", password=" + password + ", name=" + name + ", gender=" + gender + "]";
+		return "UserVo [no=" + no + ", id=" + id + ", password=" + password + ", name=" + name + ", gender=" + gender
+				+ "]";
 	}
 	
-	
-
 }
+

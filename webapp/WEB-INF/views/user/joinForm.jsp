@@ -71,7 +71,7 @@
 
 				<div id="user">
 					<div id="joinForm">
-						<form action="" method="get">
+						<form action="./join" method="get">
 
 							<!-- 아이디 -->
 							<div class="form-group">
@@ -87,10 +87,10 @@
 									placeholder="비밀번호를 입력하세요">
 							</div>
 
-							<!-- 이메일 -->
+							<!-- 이름 -->
 							<div class="form-group">
 								<label class="form-text" for="input-name">이름</label> 
-								<input type="text" id="input-name" name="" value=""
+								<input type="text" id="input-name" name="name" value=""
 									placeholder="이름을 입력하세요">
 							</div>
 
