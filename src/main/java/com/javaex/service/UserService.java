@@ -18,7 +18,17 @@ public class UserService {
 	// 메소드
 
 	// 메소드 일반
-	// 로그아웃
+	//수정 update
+	public int update(UserVo userVo) {
+		System.out.println("UserService.update()");
+		
+		int count = userDao.userUpdate(userVo);
+
+		return count;
+	}
+		
+	
+	// getUser
 	public UserVo getUser(int no) {
 		System.out.println("UserService.getUser()");
 

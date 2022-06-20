@@ -18,6 +18,15 @@ public class UserDao {
 	// 메소드
 
 	// 메소드 일반
+	//수정하기
+	public int userUpdate(UserVo userVo) {
+		System.out.println("UserDao.userUpdate()");
+		
+		int count = sqlSession.update("user.userUpdate", userVo);
+		
+		return count;
+	}
+		
 	// 로그아웃
 	public UserVo getUser(int no) {
 		System.out.println("UserDao.getUser()");

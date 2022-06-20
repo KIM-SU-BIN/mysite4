@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
@@ -28,22 +29,32 @@ public class UserController {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 수정하기 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//	
 
 	@RequestMapping(value = "/user/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modifyForm(Model model, HttpSession session) {
-		System.out.println("UserController>modifyForm");
+	public String modifyForm(@RequestParam("no") int no, Model model) {
+		System.out.println("UserController>modifyForm()");
 		
 		//정보 불러오기
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		int no = authUser.getNo();
-		model.addAllAttributes("UserVo",userVo);
+		UserVo getUser = userService.getUser(no);
+		
+		model.addAttribute("getUser",getUser);
 		
 		return "user/modifyForm";
+	}
+	
+	
+	@RequestMapping(value="/user/modify", method = {RequestMethod.GET,RequestMethod.POST})
+	public String modify(@ModelAttribute UserVo userVo) {
+		System.out.println("UserController> modify()");
+		
+		userService.update(userVo);
+		System.out.println(userVo);
+		return "redirect:/main";
 	}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 로그아웃 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 	@RequestMapping(value = "/user/logout", method = { RequestMethod.GET, RequestMethod.POST })
 	public String logout(HttpSession session) {
-		System.out.println("UserController>logout");
+		System.out.println("UserController>logout()");
 
 		// 세션값을 지운다
 		session.removeAttribute("autherUser");

@@ -3,8 +3,21 @@
 
 <mapper namespace="user">
 
+	<!-- 업데이트 (수정) -->
+	<update id="userUpdate" parameterType="UserVo">
+		<![CDATA[
+			update users
+			set password = #{password}
+   				   ,name = #{name}
+    			 ,gender = #{gender}
+			where no = #{no}
+		]]>
+	</update>
+
+
 	<!-- 회원정보 -->
-	<select id="getUser" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
+	<select id="getUser" parameterType="com.javaex.vo.UserVo"
+		resultType="com.javaex.vo.UserVo">
 	<![CDATA[
 	
 		select  no,
