@@ -15,7 +15,7 @@ public class GuestbookController {
 
 	// 메소드 일반
 	// 삭제폼 deleteForm
-	@RequestMapping(value = "/deleteForm", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/user/deleteForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String deleteForm() {
 		System.out.println("GuestController>deleteForm");
 		
@@ -23,7 +23,7 @@ public class GuestbookController {
 	}
 
 	// 방명록 addList
-	@RequestMapping(value = "/addList", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/user/addList", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addList() {
 		System.out.println("GuestController>addList");
 
