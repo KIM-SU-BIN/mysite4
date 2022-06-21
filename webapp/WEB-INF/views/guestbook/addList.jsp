@@ -94,7 +94,7 @@
 								<td>${guestbookVo.no}</td>
 								<td>${guestbookVo.name}</td>
 								<td>${guestbookVo.date}</td>
-								<td><a href="./board/delete?no=${guestbookVo.no}">[삭제]</a></td>
+								<td><a href="./deleteForm?no=${guestbookVo.no}">[삭제]</a></td>
 							</tr>
 							
 							<tr>
