@@ -19,11 +19,13 @@
 	<!-- 업데이트 (수정) -->
 	<update id="userUpdate" parameterType="UserVo">
 		<![CDATA[
+		
 			update users
 			set password = #{password},
    				    name = #{name},
     			  gender = #{gender}
 			where no = #{no}
+			
 		]]>
 	</update>
  

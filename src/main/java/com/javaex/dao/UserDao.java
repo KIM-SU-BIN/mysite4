@@ -18,6 +18,7 @@ public class UserDao {
 	// 메소드
 
 	// 메소드 일반
+	
 	//수정하기
 	public int userUpdate(UserVo userVo) {
 		System.out.println("UserDao.userUpdate()");
@@ -32,7 +33,8 @@ public class UserDao {
 		System.out.println("UserDao.getModifyUser()");
 
 		UserVo uVo = sqlSession.selectOne("user.getModifyUser", no);
-
+		System.out.println(uVo);
+		
 		return uVo;
 	}
 

@@ -14,6 +14,7 @@ import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
 
 @Controller
+@RequestMapping(value="/user")
 public class UserController {
 
 	// 필드
@@ -28,29 +29,38 @@ public class UserController {
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 수정하기 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//	
 
-	@RequestMapping(value = "/user/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modifyForm(@RequestParam("no") int no, Model model) {
 		System.out.println("UserController>modifyForm()");
 
 		// 정보 불러오기
-		UserVo getUser = userService.getUser(no);
+		UserVo userVo = userService.getUser(no);
 
-		model.addAttribute("getUser", getUser);
+		model.addAttribute("userVo", userVo);
 
 		return "user/modifyForm";
 	}
+	
 
-	@RequestMapping(value = "/user/modify", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modify(@ModelAttribute UserVo userVo) {
-		System.out.println("UserController> modify()");
-
+	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })
+	public String modify(@ModelAttribute UserVo userVo, HttpSession session) {
+		System.out.println("UserController>modify()");
+		
+		//authUser에 저장되어 있는 no를 가져오기 위해서 씀 
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		int no = authUser.getNo();
+		
+		//authUser에 가져온 no를 저장하기
+		userVo.setNo(no);
+		
+		//정보 업데이트
 		userService.update(userVo);
-		System.out.println(userVo);
+		
 		return "redirect:/main";
 	}
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 로그아웃 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
-	@RequestMapping(value = "/user/logout", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
 	public String logout(HttpSession session) {
 		System.out.println("UserController>logout()");
 
@@ -66,7 +76,7 @@ public class UserController {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 회원가입 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//	
 
 	// 회원가입 (join)
-	@RequestMapping(value = "/user/join", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/join", method = { RequestMethod.GET, RequestMethod.POST })
 	public String join(@ModelAttribute UserVo userVo) {
 		System.out.println("UserController>join()");
 
@@ -77,7 +87,7 @@ public class UserController {
 	}
 
 	// 회원가입폼 (joinForm)
-	@RequestMapping(value = "/user/joinForm", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/joinForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String joinForm() {
 		System.out.println("UserController>joinForm()");
 
@@ -87,7 +97,7 @@ public class UserController {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 로그인 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 	// 로그인
-	@RequestMapping(value = "/user/login", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
 	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
 		System.out.println("UserController>login()");
 
@@ -108,7 +118,7 @@ public class UserController {
 	}
 
 	// 로그인폼 (loginForm)
-	@RequestMapping(value = "/user/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String loginForm() {
 		System.out.println("UserController>loginForm()");
 

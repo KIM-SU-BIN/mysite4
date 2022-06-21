@@ -18,6 +18,7 @@ public class UserService {
 	// 메소드
 
 	// 메소드 일반
+	
 	// 수정 update
 	public int update(UserVo userVo) {
 		System.out.println("UserService.update()");
@@ -26,6 +27,7 @@ public class UserService {
 
 		return count;
 	}
+	
 
 	// getUser
 	public UserVo getUser(int no) {
