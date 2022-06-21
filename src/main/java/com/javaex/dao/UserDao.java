@@ -29,9 +29,9 @@ public class UserDao {
 		
 	// 로그아웃
 	public UserVo getUser(int no) {
-		System.out.println("UserDao.getUser()");
+		System.out.println("UserDao.getModifyUser()");
 
-		UserVo uVo = sqlSession.selectOne("user.getUser", no);
+		UserVo uVo = sqlSession.selectOne("user.getModifyUser", no);
 
 		return uVo;
 	}

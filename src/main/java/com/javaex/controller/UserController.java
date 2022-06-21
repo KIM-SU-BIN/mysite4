@@ -25,31 +25,29 @@ public class UserController {
 	// 메소드
 
 	// 메소드 일반
-	
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 수정하기 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//	
 
 	@RequestMapping(value = "/user/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modifyForm(@RequestParam("no") int no, Model model) {
 		System.out.println("UserController>modifyForm()");
-		
-		//정보 불러오기
+
+		// 정보 불러오기
 		UserVo getUser = userService.getUser(no);
-		
-		model.addAttribute("getUser",getUser);
-		
+
+		model.addAttribute("getUser", getUser);
+
 		return "user/modifyForm";
 	}
-	
-	
-	@RequestMapping(value="/user/modify", method = {RequestMethod.GET,RequestMethod.POST})
+
+	@RequestMapping(value = "/user/modify", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modify(@ModelAttribute UserVo userVo) {
 		System.out.println("UserController> modify()");
-		
+
 		userService.update(userVo);
 		System.out.println(userVo);
 		return "redirect:/main";
 	}
-
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 로그아웃 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 	@RequestMapping(value = "/user/logout", method = { RequestMethod.GET, RequestMethod.POST })
