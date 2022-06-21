@@ -3,6 +3,18 @@
 
 <mapper namespace="guestbook">
 
+	<!-- delete 삭제 -->
+	<delete id="delete" parameterType="GuestbookVo">
+		<![CDATA[
+		
+		delete from guestbook
+		where no = #{no}
+		and password = #{password}
+		
+		]]>
+	</delete>
+
+
 	<!-- 리스트 : select만 resultType 이써야함 -->
 	<select id="bookList" resultType="GuestBookVo">
 		<![CDATA[

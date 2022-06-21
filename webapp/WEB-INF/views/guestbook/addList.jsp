@@ -113,7 +113,6 @@
 		</div>
 		<!-- //container  -->
 
-		<div id="footer">
 			<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		</div>
 		<!-- //footer -->

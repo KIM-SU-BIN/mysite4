@@ -20,6 +20,16 @@ public class GuestbookDao {
 
 	// 메소드 일반
 	
+	//삭제
+	public int delete(GuestBookVo guestbookVo) {
+		System.out.println("guestbookDao>delete");
+		
+		int count = sqlSession.delete("guestbook.delete", guestbookVo);
+		
+		return count;
+	}
+	
+	
 	//addList 출력
 	public List<GuestBookVo> getGuestList() {
 		System.out.println("guestbookDao>addList");

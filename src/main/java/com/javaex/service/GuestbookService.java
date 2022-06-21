@@ -20,6 +20,14 @@ public class GuestbookService {
 	// 메소드
 
 	// 메소드 일반
+	//삭제
+	public int delete(GuestBookVo guestbookVo) {
+		System.out.println("GuestBookService>delete");
+		
+		int count = guestbookDao.delete(guestbookVo);
+
+		return count;
+	}
 	
 	
 	// 방명록 addList 출력
