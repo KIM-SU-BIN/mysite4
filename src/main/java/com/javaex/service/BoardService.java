@@ -21,6 +21,35 @@ public class BoardService {
 
 	// 메소드 일반
 	
+	
+	//조회수
+	public int hitUpdate(int no) {
+		System.out.println("board.hitUpdate");
+		
+		int count = boardDao.hitUpdate(no);
+		return count;
+	}
+	
+	
+	//read 읽기/ 한 명 가져오기 
+	public BoardVo getBoard(int no) {
+		System.out.println("BoardService>read");
+		
+		BoardVo bVo = boardDao.getBoard(no);
+		
+		return bVo;
+	}
+	
+	
+	//삭제
+	public int delete(int no) {
+		System.out.println("BoardService>delete");
+		
+		int count = boardDao.delete(no);
+		
+		return count;
+	}
+	
 	//write 쓰기
 	public int write(BoardVo boardVo) {
 		System.out.println("BoardService>write");

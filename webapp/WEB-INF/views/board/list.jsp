@@ -61,14 +61,19 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${boardList}" var="boardVo">
+								<c:forEach items="${bList }" var="boardVo">
 									<tr>
-										<td>123</td>
-										<td class="text-left"><a href="#">게시판 게시글입니다.</a></td>
-										<td>${BoardVo.name}</td>
-										<td>123</td>
-										<td>${BoardVo.date}</td>
-										<td><a href="./deleteForm?no=${boardVo.no}">[삭제]</a></td>
+										<td>${boardVo.no }</td>
+										<td class="text-left"><a href="./read/${boardVo.no }">${boardVo.title }</a></td>
+										<td>${BoardVo.name }</td>
+										<td>${boardVo.hit }</td>
+										<td>${BoardVo.date }</td>
+
+										<c:if test="${authUser.no eq boardVo.userNo }">
+											<td><a href="./delete/${boardVo.no }">[삭제]</a></td>
+										</c:if>
+										
+										
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -93,7 +98,7 @@
 
 							<div class="clear"></div>
 						</div>
-						<a id="btn_write" href="/mysite4/board/writeForm">글쓰기</a>
+						<a id="btn_write" href="./writeForm">글쓰기</a>
 
 					</div>
 					<!-- //list -->

@@ -3,6 +3,14 @@
 
 <mapper namespace="board">
 
+	<!-- delete 삭제 -->
+	<delete id="boardDelete" parameterType="int">
+		<![CDATA[
+			delete board
+			where no = #{no}	
+		]]>
+	</delete>
+
 	<!-- write쓰기 -->
 	<insert id="boardInsert" parameterType="BoardVo">
 		<![CDATA[	
@@ -10,7 +18,7 @@
 			insert into board
 			values(seq_board_no.nextval, #{title}, #{content},0, sysdate, #{userNo} )
 		]]>
-		</insert>
+	</insert>
 
 
 	<!-- 리스트 -->

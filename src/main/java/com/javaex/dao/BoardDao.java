@@ -19,26 +19,51 @@ public class BoardDao {
 	// 메소드
 
 	// 메소드 일반
-	
+	// 조회수
+	public int hitUpdate(int no) {
+		System.out.println("BoardDao>hitUpdate");
+
+		int count = sqlSession.update("board.hitUpdate", no);
+
+		return count;
+	}
+
+	// read 읽기/ 한 명 가져오기
+	public BoardVo getBoard(int no) {
+		System.out.println("BoardDao>read");
+
+		BoardVo bVo = sqlSession.selectOne("board.getBoard", no);
+
+		return bVo;
+	}
+
+	// 삭제
+	public int delete(int no) {
+		System.out.println("BoardDao>delete");
+
+		int count = sqlSession.delete("board.boardDelete", no);
+
+		return count;
+	}
+
 //******************************************  write	***************************************** 	
 	public int boardInsert(BoardVo boardVo) {
 		System.out.println("BoardDao>write");
-		
+
 		int count = sqlSession.insert("board.boardInsert", boardVo);
-				
+
 		return count;
-		
+
 	}
-	
-	
+
 //******************************************  list	***************************************** 
-	//list 목록 불러오기
+	// list 목록 불러오기
 	public List<BoardVo> getBoard(String keyword) {
 		System.out.println("BoardDao>boardList");
-		
+
 		List<BoardVo> bList = sqlSession.selectList("board.boardList", keyword);
-		
+
 		return bList;
-	} 
+	}
 
 }

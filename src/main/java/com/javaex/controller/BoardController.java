@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
@@ -23,6 +24,33 @@ public class BoardController {
 	// 생성자
 	// 메소드
 	// 메소드-일반
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  읽기 read ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+	@RequestMapping(value = "/read", method = { RequestMethod.GET, RequestMethod.POST })
+	public String read(@RequestParam("no") int no, Model model) {
+		System.out.println("BoardController>read");
+		
+		//1. 서비스에서 데이터를 부른다
+		boardService.hitUpdate(no);
+		
+		//2.Vo에서 불러오기
+		BoardVo bVo = boardService.getBoard(no);
+		
+		//3.모델에 저장
+		model.addAttribute("bVo" , bVo);
+		
+		return "/board/read";
+	}
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  삭제 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+	@RequestMapping(value = "/delete", method = { RequestMethod.GET, RequestMethod.POST })
+	public String delete(@RequestParam("no") int no) {
+		System.out.println("BoardController>delete");
+
+		boardService.delete(no);
+
+		return "redirect:/board/list";
+	}
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  쓰기 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 	@RequestMapping(value = "/writeForm", method = { RequestMethod.GET, RequestMethod.POST })
