@@ -20,11 +20,11 @@ public class BoardDao {
 
 	// 메소드 일반
 	
-	//수정폼 정보 가져오기
-	public int getBoard2(BoardVo boardVo) {
-		System.out.println("BoardDao>getBoard2");
+	//수정
+	public int modify(BoardVo boardVo) {
+		System.out.println("BoardDao>modify");
 		
-		int count = sqlSession.update("board.getboard2", boardVo);
+		int count = sqlSession.update("board.modify", boardVo);
 		
 		return count;
 	}

@@ -39,12 +39,12 @@ public class BoardController {
 	
 	
 	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modify() {
+	public String modify(@ModelAttribute BoardVo boardVo) {
 		System.out.println("BoardController>modify");
 		
+		boardService.modify(boardVo);
 		
-		
-		return "";
+		return "redirect:/board/list";
 	}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  읽기 read ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//

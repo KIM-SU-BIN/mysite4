@@ -20,11 +20,11 @@ public class BoardService {
 	// 메소드
 
 	// 메소드 일반
-	//수정 
-	public int getBoard2(BoardVo boardVo) {
-		System.out.println("board.getboard2");
+	//수정
+	public int modify(BoardVo boardVo) {
+		System.out.println("board.modify");
 		
-		int count = boardDao.getBoard2(boardVo);
+		int count = boardDao.modify(boardVo);
 		
 		return count;
 	
