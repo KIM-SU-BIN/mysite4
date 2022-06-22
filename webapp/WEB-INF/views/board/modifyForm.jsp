@@ -42,7 +42,7 @@
 
 				<div id="board">
 					<div id="modifyForm">
-						<form action="#" method="get">
+						<form action="/mysite4/board/modify" method="get">
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span> <span class="form-value">${bVo.name }</span>
