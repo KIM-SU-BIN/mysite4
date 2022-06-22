@@ -22,8 +22,8 @@
 		<!-- //nav -->
 
 		<div id="container" class="clearfix">
-		<c:import url="/WEB-INF/views/includes/aside.jsp"></c:import>
-		<!-- //aside -->
+			<c:import url="/WEB-INF/views/includes/aside.jsp"></c:import>
+			<!-- //aside -->
 
 			<div id="content">
 
@@ -68,14 +68,8 @@
 
 							<!-- 내용 -->
 							<div class="form-group">
-								<textarea id="txt-content">여기에는 본문내용이 출력됩니다.
-	여기에는 본문내용이 출력됩니다.
-	여기에는 본문내용이 출력됩니다.
-	여기에는 본문내용이 출력됩니다.
-	여기에는 본문내용이 출력됩니다.
-	여기에는 본문내용이 출력됩니다.
-	여기에는 본문내용이 출력됩니다.
-	여기에는 본문내용이 출력됩니다.</textarea>
+								<textarea id="txt-content" name="content">
+								${boardVo.content }</textarea>
 							</div>
 
 							<a id="btn_cancel" href="">취소</a>

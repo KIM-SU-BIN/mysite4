@@ -20,8 +20,14 @@ public class BoardDao {
 
 	// 메소드 일반
 	
-	
-	
+	//수정폼 정보 가져오기
+	public int getBoard2(BoardVo boardVo) {
+		System.out.println("BoardDao>getBoard2");
+		
+		int count = sqlSession.update("board.getboard2", boardVo);
+		
+		return count;
+	}
 	
 	
 	// 조회수
