@@ -3,6 +3,22 @@
 
 <mapper namespace="board">
 
+	<!-- read -->
+	<select id="getBoard" parameterType="int" resultType="BoardVo" >
+		<![CDATA[
+			select  b.no no
+			        ,name
+			        ,hit
+			        ,reg_date regDate
+			        ,title
+			        ,content
+			        ,user_no userNo
+			from board b, users u 
+			where b.user_no = u.no
+			and b.no = #{no} 	
+		]]>
+	</select>
+
 	<!-- delete 삭제 -->
 	<delete id="boardDelete" parameterType="int">
 		<![CDATA[
