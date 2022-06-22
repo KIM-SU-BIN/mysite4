@@ -19,6 +19,11 @@ public class BoardDao {
 	// 메소드
 
 	// 메소드 일반
+	
+	
+	
+	
+	
 	// 조회수
 	public int hitUpdate(int no) {
 		System.out.println("BoardDao>hitUpdate");

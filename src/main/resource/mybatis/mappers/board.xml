@@ -3,8 +3,17 @@
 
 <mapper namespace="board">
 
+	<!-- update -->
+	<update id="hitUpdate" parameterType="int">
+		<![CDATA[
+			update board
+			set hit = hit+1
+			where no = #{no}	
+		]]>
+	</update>
+
 	<!-- read -->
-	<select id="getBoard" parameterType="int" resultType="BoardVo" >
+	<select id="getBoard" parameterType="int" resultType="BoardVo">
 		<![CDATA[
 			select  b.no no
 			        ,name

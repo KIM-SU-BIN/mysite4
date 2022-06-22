@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
@@ -25,10 +24,29 @@ public class BoardController {
 	// 생성자
 	// 메소드
 	// 메소드-일반
+	
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  수정 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+	
+	@RequestMapping(value = "/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
+	public String modifyForm (@ModelAttribute BoardVo boardVo) {
+		System.out.println("BoardController>modifyForm");
+		
+		return "board/modifyForm";
+	}
+	
+	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })
+	public String modify() {
+		System.out.println("BoardController>modify");
+		
+		
+		
+		return "";
+	}
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  읽기 read ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 	
-	@RequestMapping(value = "/read", method = { RequestMethod.GET, RequestMethod.POST })
-	public String read(@RequestParam("no") int no, Model model) {
+	@RequestMapping(value = "/read/{no}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String read(@PathVariable("no") int no, Model model) {
 		System.out.println("BoardController>read");
 		
 		//1. 서비스에서 데이터를 부른다
