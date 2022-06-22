@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
@@ -28,11 +29,15 @@ public class BoardController {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  수정 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 	
 	@RequestMapping(value = "/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modifyForm (@ModelAttribute BoardVo boardVo) {
+	public String modifyForm (@RequestParam("no") int no ,Model model) {
 		System.out.println("BoardController>modifyForm");
+		
+		BoardVo bVo = boardService.getBoard(no);
+		model.addAttribute("bVo", bVo);
 		
 		return "board/modifyForm";
 	}
+	
 	
 	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modify() {
