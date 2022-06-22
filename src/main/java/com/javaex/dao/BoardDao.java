@@ -20,8 +20,18 @@ public class BoardDao {
 
 	// 메소드 일반
 	
+//******************************************  write	***************************************** 	
+	public int boardInsert(BoardVo boardVo) {
+		System.out.println("BoardDao>write");
+		
+		int count = sqlSession.insert("board.boardInsert", boardVo);
+				
+		return count;
+		
+	}
 	
-	//******************************************  list	***************************************** 
+	
+//******************************************  list	***************************************** 
 	//list 목록 불러오기
 	public List<BoardVo> getBoard(String keyword) {
 		System.out.println("BoardDao>boardList");

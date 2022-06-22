@@ -21,6 +21,17 @@ public class BoardService {
 
 	// 메소드 일반
 	
+	//write 쓰기
+	public int write(BoardVo boardVo) {
+		System.out.println("BoardService>write");
+		
+		// dao를 통해서 데이터 저장
+		int count = boardDao.boardInsert(boardVo);
+		
+		return count;
+	}
+	
+	
 	//getlist
 	public List<BoardVo> getboard(String keyword) {
 		System.out.println("BoardService>getlist");
