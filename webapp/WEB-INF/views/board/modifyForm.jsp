@@ -45,23 +45,23 @@
 						<form action="#" method="get">
 							<!-- 작성자 -->
 							<div class="form-group">
-								<span class="form-text">작성자</span> <span class="form-value">정우성</span>
+								<span class="form-text">작성자</span> <span class="form-value">${bVo.name }</span>
 							</div>
 
 							<!-- 조회수 -->
 							<div class="form-group">
-								<span class="form-text">조회수</span> <span class="form-value">123</span>
+								<span class="form-text">조회수</span> <span class="form-value">${bVo.hit }</span>
 							</div>
 
 							<!-- 작성일 -->
 							<div class="form-group">
-								<span class="form-text">작성일</span> <span class="form-value">2020-03-02</span>
+								<span class="form-text">작성일</span> <span class="form-value">${bVo.date }</span>
 							</div>
 
 							<!-- 제목 -->
 							<div class="form-group">
-								<label class="form-text" for="txt-title">제목</label> <input
-									type="text" id="txt-title" name="" value="여기에는 글제목이 출력됩니다.">
+								<label class="form-text" for="txt-title">제목</label> 
+								<input type="text" id="txt-title" name="title" value="${bVo.title }">
 							</div>
 
 
@@ -69,10 +69,10 @@
 							<!-- 내용 -->
 							<div class="form-group">
 								<textarea id="txt-content" name="content">
-								${boardVo.content }</textarea>
+								${bVo.content}</textarea>
 							</div>
 
-							<a id="btn_cancel" href="">취소</a>
+							<a id="btn_cancel" href="/mysite4/board/list">취소</a>
 							<button id="btn_modify" type="submit">수정</button>
 
 						</form>
