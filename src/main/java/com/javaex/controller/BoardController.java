@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,7 @@ public class BoardController {
 	// 메소드
 	// 메소드-일반
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  읽기 read ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+	
 	@RequestMapping(value = "/read", method = { RequestMethod.GET, RequestMethod.POST })
 	public String read(@RequestParam("no") int no, Model model) {
 		System.out.println("BoardController>read");
@@ -42,8 +44,9 @@ public class BoardController {
 	}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  삭제 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
-	@RequestMapping(value = "/delete", method = { RequestMethod.GET, RequestMethod.POST })
-	public String delete(@RequestParam("no") int no) {
+
+	@RequestMapping(value = "/delete/{no}", method = { RequestMethod.GET, RequestMethod.POST })
+	public String delete(@PathVariable ("no") int no) {
 		System.out.println("BoardController>delete");
 
 		boardService.delete(no);

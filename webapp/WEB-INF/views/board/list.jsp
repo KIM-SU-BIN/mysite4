@@ -43,7 +43,7 @@
 
 				<div id="board">
 					<div id="list">
-						<form action="" method="">
+						<form action="" method="get">
 							<div class="form-group text-right">
 								<input type="text">
 								<button type="submit" id=btn_search>검색</button>
@@ -68,12 +68,10 @@
 										<td>${BoardVo.name }</td>
 										<td>${boardVo.hit }</td>
 										<td>${BoardVo.date }</td>
-
 										<c:if test="${authUser.no eq boardVo.userNo }">
 											<td><a href="./delete/${boardVo.no }">[삭제]</a></td>
 										</c:if>
-										
-										
+
 									</tr>
 								</c:forEach>
 							</tbody>

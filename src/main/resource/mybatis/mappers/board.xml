@@ -31,7 +31,8 @@
 			  		content, 
 			 		hit, 
 					reg_date,
-			  		users.name 
+			  		users.name,
+			  		user_no userNo 
 			from board, users
 			where board.user_no = users.no
 			and title like #{keyword}

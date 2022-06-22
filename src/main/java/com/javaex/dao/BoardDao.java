@@ -36,8 +36,9 @@ public class BoardDao {
 
 		return bVo;
 	}
+	
+//******************************************  삭제 ***************************************** 	
 
-	// 삭제
 	public int delete(int no) {
 		System.out.println("BoardDao>delete");
 
@@ -47,6 +48,7 @@ public class BoardDao {
 	}
 
 //******************************************  write	***************************************** 	
+	
 	public int boardInsert(BoardVo boardVo) {
 		System.out.println("BoardDao>write");
 
