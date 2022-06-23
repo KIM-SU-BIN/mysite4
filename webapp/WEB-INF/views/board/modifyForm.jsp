@@ -43,6 +43,7 @@
 				<div id="board">
 					<div id="modifyForm">
 						<form action="/mysite4/board/modify" method="get">
+							<input type="hidden" name="no" value="${bVo.no}">
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span> <span class="form-value">${bVo.name }</span>
@@ -63,8 +64,6 @@
 								<label class="form-text" for="txt-title">제목</label> 
 								<input type="text" id="txt-title" name="title" value="${bVo.title }">
 							</div>
-
-
 
 							<!-- 내용 -->
 							<div class="form-group">
