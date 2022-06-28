@@ -20,34 +20,55 @@ public class GuestbookDao {
 
 	// 메소드 일반
 	
-	//삭제
-	public int delete(GuestBookVo guestbookVo) {
-		System.out.println("guestbookDao>delete");
-		
-		int count = sqlSession.delete("guestbook.delete", guestbookVo);
+	// 방명록 저장(ajax)
+	public int insertGuest(GuestBookVo guestbookVo) {
+		System.out.println("guestbookDao>insertGuest");
+
+		int count = sqlSession.insert("gusetbook.insertSelectKey", guestbookVo);
 		
 		return count;
+		
 	}
 	
 	
-	//addList 출력
+	// 방명록 저장 후 등록한 데이터 가져오기  ajax
+	public GuestBookVo getGuest(int no) {
+		System.out.println("guestbookDao>getGuest");
+
+		GuestBookVo guestbookVo = sqlSession.selectOne("guestbook.getGuest", no);
+		
+		return guestbookVo;
+		
+	}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+	
+	// 삭제
+	public int delete(GuestBookVo guestbookVo) {
+		System.out.println("guestbookDao>delete");
+
+		int count = sqlSession.delete("guestbook.delete", guestbookVo);
+
+		return count;
+	}
+
+	// addList 전체출력
 	public List<GuestBookVo> getGuestList() {
 		System.out.println("guestbookDao>addList");
-		
+
 		List<GuestBookVo> bookList = sqlSession.selectList("guestbook.bookList");
-		
+
 		return bookList;
 	}
-	
-	
-	//addList 추가
+
+	// addList 추가
 	public int insert(GuestBookVo guestbookVo) {
 		System.out.println("guestbookDao>integer");
-		
-		//입력정보 저장하기
+
+		// 입력정보 저장하기
 		int count = sqlSession.insert("guestbook.insert", guestbookVo);
 
 		return count;
-	} 
-	
+	}
+
 }

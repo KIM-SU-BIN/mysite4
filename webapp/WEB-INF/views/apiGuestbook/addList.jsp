@@ -138,32 +138,118 @@
 </head>
 
 </body>
+
+<!--  리스트 요청 + 그리기 -->
 <script type="text/javascript">
+
 
 <!-- 준비가 끝나면 -->
 	$(document).ready(function() {
+		console.log("jquery로 요청 data만 받는 요청");
 
-		console.log("jquery로 요청");
+		/* 리스트 요청하고 그리기 */
+		fetchList();
+	});
+	
 
+	// 저장 버튼을 클릭했을 때 
+	$("#btnSubmit").on("click", function() {
+		console.log("저장버튼 클릭");
+
+		//데이터 수집
+		var name = $("[name ='name']").val();
+		var password = $("[name ='password']").val();
+		var content = $("[name =content]").val();
+
+		//데이터 객체로 묶기
+		var guestbookVo = {
+			name: name,
+			password: password,
+			content: content
+		};
+
+		/* 리스트 요청 */
 		$.ajax({
-			
-			//요청
+
+			/* url : "${pageContext.request.contextPath }/api/guestbook/add?name="+name+"&password="+password+"&content="+content,	 */
+			url : "${pageContext.request.contextPath }/api/guestbook/add",
+			type : "post",
+			//contentType : "application/json",
+			data : guestVo, //파라미터 정리된다
+			dataType : "json",
+			success : function(gVo) {
+				/* 1개데이터 리스트 추가(그리기)하기 */
+				render(gVo, "up");
+
+				/* 입력폼 초기화 */
+				$("[name='name']").val("");
+				$("[name='password']").val("");
+				$("[name='content']").val("");
+
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	});
+	
+	
+	
+	/* 리스트 요청 */
+	function fetchList() {
+		$.ajax({
+
 			url : "${pageContext.request.contextPath }/api/guestbook/list",
 			type : "post",
 			//contentType : "application/json",
 			//data : {name: ”홍길동"},
 
-			//응답
 			dataType : "json",
-			success : function(result) {
-				/*성공시 처리해야될 코드 작성*/
+			success : function(guestbookList) {
+				//화면 data + html 그린다
+				for (var i = 0; i < guestbookList.length; i++) {
+					render(guestbookList[i], "down"); //vo --> 화면에 그린다.
+				}
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
-
 		});
+	}
 
-	});
+	/* 리스트 1개씩 그리기 */
+	function render(guestbookVo, opt){
+		console.log("render()");
+		
+		var str = '';
+		str += '<table class="guestRead">' ;
+		str += '    <colgroup>' ;
+		str += '        <col style="width: 10%;">' ;
+		str += '        <col style="width: 40%;">' ;
+		str += '        <col style="width: 40%;">' ;
+		str += '        <col style="width: 10%;">' ;
+		str += '    </colgroup>' ;
+		str += '    <tr>' ;
+		str += '        <td>'+guestbookVo.no+'</td>' ;
+		str += '        <td>'+guestbookVo.name+'</td>' ;
+		str += '        <td>'+guestbookVo.regDate+'</td>' ;
+		str += '        <td><a href="">[삭제]</a></td>' ;
+		str += '    </tr>' ;
+		str += '    <tr>' ;
+		str += '        <td colspan=4 class="text-left">'+guestbookVo.content+'</td>' ;
+		str += '    </tr>' ;
+		str += '</table>' ;
+
+		if (opt == "down") {
+			$("#listArea").append(str);
+
+		} else if (opt == "up") {
+			$("#listArea").prepend(str);
+
+		} else {
+			console.log("opt오류");
+		}
+
+	}
 </script>
 </html>

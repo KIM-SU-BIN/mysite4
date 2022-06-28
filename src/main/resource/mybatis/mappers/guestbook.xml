@@ -3,6 +3,37 @@
 
 <mapper namespace="guestbook">
 
+	<!-- 방명록 저장(ajax) -->
+	<insert id="insertSelectKey" parameterType="GuestBookVo">
+
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select seq_guestbook_no.nextval from dual
+		</selectKey>
+   
+      <![CDATA[   
+         insert into guestbook
+         values ( #{no}, #{name}, #{password}, #{content}, SYSDATE )
+      ]]>
+
+	</insert>
+	
+
+	<!-- 방명록 1개의 데이터 조회하기(ajax) -->
+	<select id="add" parameterType="int" resultType="GuestBookVo">
+      <![CDATA[
+         select no
+               , name
+               , password
+               , content
+               , reg_date regDate
+         from guestbook
+         where no = #{no}
+      ]]>
+	</select>
+
+
+	<!-- *********************************************************************************** -->
+
 	<!-- delete 삭제 -->
 	<delete id="delete" parameterType="GuestbookVo">
 		<![CDATA[
@@ -29,9 +60,9 @@
 
 		]]>
 	</select>
-	
+
 	<!-- add 추가 -->
-	<insert id="insert" parameterType="GuestbookVo" >
+	<insert id="insert" parameterType="GuestbookVo">
 		<![CDATA[
 			
 			insert into guestbook
