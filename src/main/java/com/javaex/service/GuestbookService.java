@@ -34,9 +34,9 @@ public class GuestbookService {
 	public List<GuestBookVo> getGuestList() {
 		System.out.println("GuestBookService>addlist");
 		
-		List<GuestBookVo> gList = guestbookDao.getGuestList();
+		List<GuestBookVo> guestList = guestbookDao.getGuestList();
 		
-		return gList;
+		return guestList;
 	}
 	
 	

@@ -78,5 +78,14 @@ public class BoardDao {
 
 		return bList;
 	}
+	
+	// list 전체 글 가져올 경우 String keyword만 없음!
+	/*public List<BoardVo> getBoard() {
+		System.out.println("BoardDao>boardList");
+
+		List<BoardVo> bList = sqlSession.selectList("board.boardList");
+
+		return bList;
+	}*/
 
 }
