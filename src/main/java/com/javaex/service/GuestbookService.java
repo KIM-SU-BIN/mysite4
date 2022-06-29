@@ -30,7 +30,7 @@ public class GuestbookService {
 
 		int no = guestbookVo.getNo();
 
-		//방금 저장한 1개의 데이터를 가져온다.
+		// 방금 저장한 1개의 데이터를 가져온다.
 		GuestBookVo gVo = guestbookDao.getGuest(no);
 
 		return gVo;
@@ -38,6 +38,22 @@ public class GuestbookService {
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////	
+	
+	//방명록 1개 데이터 삭제 -> 모달
+	public String delete2(GuestBookVo guestbookVo) {
+		System.out.println("GuestBookService>delete2");
+
+		String state;
+		
+		int count = guestbookDao.delete2(guestbookVo);
+		
+		if(count>0) {
+			state = "success";
+		}else {
+			state = "fail";
+		}
+		return state;
+	}
 
 	// 삭제
 	public int delete(GuestBookVo guestbookVo) {

@@ -24,7 +24,7 @@ public class GuestbookDao {
 	public int insertGuest(GuestBookVo guestbookVo) {
 		System.out.println("guestbookDao>insertGuest");
 
-		int count = sqlSession.insert("gusetbook.insertSelectKey", guestbookVo);
+		int count = sqlSession.insert("guestbook.insertSelectKey", guestbookVo);
 		
 		return count;
 		
@@ -42,6 +42,16 @@ public class GuestbookDao {
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////
+	
+	// 방명록 삭제 -> 모달
+	public int delete2(GuestBookVo guestbookVo) {
+		System.out.println("guestbookDao>delete2");
+
+		return sqlSession.delete("guestbook.delete2", guestbookVo);
+		
+		
+	}
+	
 	
 	// 삭제
 	public int delete(GuestBookVo guestbookVo) {

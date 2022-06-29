@@ -7,7 +7,8 @@
 	<insert id="insertSelectKey" parameterType="GuestBookVo">
 
 		<selectKey keyProperty="no" resultType="int" order="BEFORE">
-			select seq_guestbook_no.nextval from dual
+			select
+			seq_guestbook_no.nextval from dual
 		</selectKey>
    
       <![CDATA[   
@@ -16,7 +17,7 @@
       ]]>
 
 	</insert>
-	
+
 
 	<!-- 방명록 1개의 데이터 조회하기(ajax) -->
 	<select id="add" parameterType="int" resultType="GuestBookVo">
@@ -33,7 +34,17 @@
 
 
 	<!-- *********************************************************************************** -->
-
+	<!-- 방명록 delete 데이터 1개 삭제 -->
+		<delete id="delete2" parameterType="GuestbookVo">
+		<![CDATA[
+		
+		delete from guestbook
+		where no = #{no}
+		and password = #{password}
+		
+		]]>
+	</delete>
+	
 	<!-- delete 삭제 -->
 	<delete id="delete" parameterType="GuestbookVo">
 		<![CDATA[

@@ -14,7 +14,8 @@
 	rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/guestbook.css"
 	rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
+<link
+	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
 	rel="stylesheet" type="text/css">
 
 <!-- js -->
@@ -123,13 +124,13 @@
 				<h4 class="modal-title">비밀번호를 입력하세요</h4>
 			</div>
 			<div class="modal-body">
-				비밀번호<input type="text" name="password" value=""><br>
-				<input type="text" name="no" value="">
-				
+				비밀번호<input type="text" name="password" value=""><br> <input
+					type="text" name="no" value="">
+
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+				<button id="btnModalDel" type="button" class="btn btn-danger">삭제</button>
 			</div>
 		</div>
 		<!-- /.modal-content -->
@@ -140,13 +141,10 @@
 <!-- ************************************************************************************************************* -->
 
 </body>
-
-<!--  리스트 요청 + 그리기 -->
 <script type="text/javascript">
+
 <!-- 준비가 끝나면 -->
 	$(document).ready(function() {
-		console.log("jquery로 요청 data만 받는 요청");
-
 		/* 리스트 요청하고 그리기 */
 		fetchList();
 	});
@@ -170,11 +168,10 @@
 		/* 리스트 요청 */
 		$.ajax({
 
-			/* url : "${pageContext.request.contextPath }/api/guestbook/add?name="+name+"&password="+password+"&content="+content,	 */
 			url : "${pageContext.request.contextPath }/api/guestbook/add",
 			type : "post",
 			//contentType : "application/json",
-			data : guestVo, //파라미터 정리된다
+			data : guestbookVo, //파라미터 정리된다
 			dataType : "json",
 			success : function(gVo) {
 				/* 1개데이터 리스트 추가(그리기)하기 */
@@ -191,8 +188,8 @@
 			}
 		});
 	});
-	
-/* ---------------------------------------------------모달-------------------------------------------------------- */
+
+	/* ---------------------------------------------------모달-------------------------------------------------------- */
 	/* 테스트 버튼을 눌렀을 때 */
 	/*$("#btnTest").on("click", function() {
 		console.log("btnTest 클릭");
@@ -202,21 +199,83 @@
 
 	});*/
 	
-	$("#listArea").on("click",".btnDel" ,function(){
+	//리스트의 삭제버튼을 클릭할때
+	$("#listArea").on("click", ".btnDel", function() {
 		console.log("btnDel 클릭");
 		var $this = $(this);
 		var no = $this.data("no");
 
 		//모달창에 form값 입력
-		$('[name="password"]').val("");
+		$('#delModal [name="password"]').val("");
 		//창 안에 번호no 값 나오게 하는 코드
 		$('[name="no"]').val(no);
-		
+
 		//모달창 띄우기 
 		$("#delModal").modal("show");
-		
+
 	});
-/* ---------------------------------------------------모달 끝-------------------------------------------------------- */	
+
+	/*모달창 삭제버튼 클릭할 때 */
+	$("#btnModalDel").on("click", function() {
+		console.log("모달창 삭제버튼 클릭");
+
+		//데이터 모으기
+		var password = $('#delModal [name="password"]').val();
+		var no = $('[name="no"]').val();
+
+		/*아래와 같은 의미!
+		var guestbookVo = {};
+		guestbookVo.password = password;
+		guestbookVo.no = no; */
+
+		var guestbookVo = {
+			password : password,
+			no : no
+		};
+
+		console.log(guestbookVo);
+
+		//서버로 데이터 전송
+
+		$.ajax({
+
+			//보낼 때
+			url : "${pageContext.request.contextPath }/api/guestbook/delete2",
+			type : "post",
+			//contentType : "application/json",
+			data : guestbookVo, //파라미터 정리된다
+
+			//받을 떄
+			dataType : "json",
+			success : function(result) {
+
+				//성공시 처리해야할 코드 작성
+				console.log(result);
+
+				//성공이면 지우고 
+				if (result == "success") {
+					$("#t" + no).delete2();
+				} else {
+					$("#delModal").modal("hide");
+					alert("비밀번호를 확인하세요.");
+				}
+
+				//실패면 안 지우기
+
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+
+		});
+
+		//성공이면 리스트에서 제거
+
+		//모달창 띄우기 
+
+	});
+
+	/* ---------------------------------------------------모달 끝-------------------------------------------------------- */
 
 	/* 리스트 요청 */
 	function fetchList() {
@@ -245,7 +304,7 @@
 		console.log("render()");
 
 		var str = '';
-		str += '<table class="guestRead">';
+		str += '<table id="t'+guestbookVo.no+'" class="guestRead">';
 		str += '    <colgroup>';
 		str += '        <col style="width: 10%;">';
 		str += '        <col style="width: 40%;">';
@@ -256,7 +315,7 @@
 		str += '        <td>' + guestbookVo.no + '</td>';
 		str += '        <td>' + guestbookVo.name + '</td>';
 		str += '        <td>' + guestbookVo.regDate + '</td>';
-		str += '        <td><button class="btnDel" type="button" data-no="'  +guestbookVo.no+   '">삭제</button></td>';
+		str += '        <td><button class="btnDel" type="button" data-no="' +guestbookVo.no+ '">삭제</button></td>';
 		str += '    </tr>';
 		str += '    <tr>';
 		str += '        <td colspan=4 class="text-left">' + guestbookVo.content
