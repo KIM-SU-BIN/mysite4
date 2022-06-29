@@ -142,7 +142,6 @@
 
 </body>
 <script type="text/javascript">
-
 <!-- 준비가 끝나면 -->
 	$(document).ready(function() {
 		/* 리스트 요청하고 그리기 */
@@ -198,7 +197,7 @@
 		$("#delModal").modal("show");
 
 	});*/
-	
+
 	//리스트의 삭제버튼을 클릭할때
 	$("#listArea").on("click", ".btnDel", function() {
 		console.log("btnDel 클릭");
@@ -246,7 +245,7 @@
 			data : guestbookVo, //파라미터 정리된다
 
 			//받을 떄
-			dataType : "json",
+			//dataType : "json",
 			success : function(result) {
 
 				//성공시 처리해야할 코드 작성
@@ -254,13 +253,14 @@
 
 				//성공이면 지우고 
 				if (result == "success") {
-					$("#t" + no).delete2();
-				} else {
+					$("#t"+no).remove();
+					
+					//모달창 닫기
 					$("#delModal").modal("hide");
+					
+				} else {			//실패면 안 지우기
 					alert("비밀번호를 확인하세요.");
 				}
-
-				//실패면 안 지우기
 
 			},
 			error : function(XHR, status, error) {
