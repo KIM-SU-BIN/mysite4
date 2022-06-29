@@ -90,7 +90,7 @@
 					<!-- </form>	 -->
 
 
-					<button id="btnTest" class="btn-primary">모달창</button>
+					<!--<button id="btnTest" class="btn-primary">모달창</button> -->
 
 
 					<div id="listArea"></div>
@@ -194,13 +194,29 @@
 	
 /* ---------------------------------------------------모달-------------------------------------------------------- */
 	/* 테스트 버튼을 눌렀을 때 */
-	$("#btnTest").on("click", function() {
+	/*$("#btnTest").on("click", function() {
 		console.log("btnTest 클릭");
 
 		//모달창 띄우기 -> show or hide 면 숨겨지기도 함!
 		$("#delModal").modal("show");
 
+	});*/
+	
+	$("#listArea").on("click",".btnDel" ,function(){
+		console.log("btnDel 클릭");
+		var $this = $(this);
+		var no = $this.data("no");
+
+		//모달창에 form값 입력
+		$('[name="password"]').val("");
+		//창 안에 번호no 값 나오게 하는 코드
+		$('[name="no"]').val(no);
+		
+		//모달창 띄우기 
+		$("#delModal").modal("show");
+		
 	});
+/* ---------------------------------------------------모달 끝-------------------------------------------------------- */	
 
 	/* 리스트 요청 */
 	function fetchList() {
@@ -240,7 +256,7 @@
 		str += '        <td>' + guestbookVo.no + '</td>';
 		str += '        <td>' + guestbookVo.name + '</td>';
 		str += '        <td>' + guestbookVo.regDate + '</td>';
-		str += '        <td><button id="delBtn" type="button"><a href="">[삭제]</a></button></td>';
+		str += '        <td><button class="btnDel" type="button" data-no="'  +guestbookVo.no+   '">삭제</button></td>';
 		str += '    </tr>';
 		str += '    <tr>';
 		str += '        <td colspan=4 class="text-left">' + guestbookVo.content
