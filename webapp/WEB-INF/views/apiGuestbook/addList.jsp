@@ -14,10 +14,14 @@
 	rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/guestbook.css"
 	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
+	rel="stylesheet" type="text/css">
 
 <!-- js -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
 
 </head>
 
@@ -81,47 +85,16 @@
 
 						</table>
 						<!-- //guestWrite -->
-						<input type="hidden" name="action" value="add">
 
 					</form>
+					<!-- </form>	 -->
 
-					<table class="guestRead">
-						<colgroup>
-							<col style="width: 10%;">
-							<col style="width: 40%;">
-							<col style="width: 40%;">
-							<col style="width: 10%;">
-						</colgroup>
-						<tr>
-							<td>1234555</td>
-							<td>이정재</td>
-							<td>2020-03-03 12:12:12</td>
-							<td><a href="">[삭제]</a></td>
-						</tr>
-						<tr>
-							<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
-						</tr>
-					</table>
-					<!-- //guestRead -->
 
-					<table class="guestRead">
-						<colgroup>
-							<col style="width: 10%;">
-							<col style="width: 40%;">
-							<col style="width: 40%;">
-							<col style="width: 10%;">
-						</colgroup>
-						<tr>
-							<td>1234555</td>
-							<td>이정재</td>
-							<td>2020-03-03 12:12:12</td>
-							<td><a href="">[삭제]</a></td>
-						</tr>
-						<tr>
-							<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
-						</tr>
-					</table>
-					<!-- //guestRead -->
+					<button id="btnTest" class="btn-primary">모달창</button>
+
+
+					<div id="listArea"></div>
+					<!-- //리스트 영역 -->
 
 				</div>
 				<!-- //guestbook -->
@@ -137,12 +110,39 @@
 	<!-- //wrap -->
 </head>
 
+<!-- ************************************************************************************************************* -->
+<!-- 삭제 모달창 -->
+<div id="delModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">비밀번호를 입력하세요</h4>
+			</div>
+			<div class="modal-body">
+				비밀번호<input type="text" name="password" value=""><br>
+				<input type="text" name="no" value="">
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- ************************************************************************************************************* -->
+
 </body>
 
 <!--  리스트 요청 + 그리기 -->
 <script type="text/javascript">
-
-
 <!-- 준비가 끝나면 -->
 	$(document).ready(function() {
 		console.log("jquery로 요청 data만 받는 요청");
@@ -150,7 +150,6 @@
 		/* 리스트 요청하고 그리기 */
 		fetchList();
 	});
-	
 
 	// 저장 버튼을 클릭했을 때 
 	$("#btnSubmit").on("click", function() {
@@ -163,9 +162,9 @@
 
 		//데이터 객체로 묶기
 		var guestbookVo = {
-			name: name,
-			password: password,
-			content: content
+			name : name,
+			password : password,
+			content : content
 		};
 
 		/* 리스트 요청 */
@@ -193,8 +192,16 @@
 		});
 	});
 	
-	
-	
+/* ---------------------------------------------------모달-------------------------------------------------------- */
+	/* 테스트 버튼을 눌렀을 때 */
+	$("#btnTest").on("click", function() {
+		console.log("btnTest 클릭");
+
+		//모달창 띄우기 -> show or hide 면 숨겨지기도 함!
+		$("#delModal").modal("show");
+
+	});
+
 	/* 리스트 요청 */
 	function fetchList() {
 		$.ajax({
@@ -218,27 +225,28 @@
 	}
 
 	/* 리스트 1개씩 그리기 */
-	function render(guestbookVo, opt){
+	function render(guestbookVo, opt) {
 		console.log("render()");
-		
+
 		var str = '';
-		str += '<table class="guestRead">' ;
-		str += '    <colgroup>' ;
-		str += '        <col style="width: 10%;">' ;
-		str += '        <col style="width: 40%;">' ;
-		str += '        <col style="width: 40%;">' ;
-		str += '        <col style="width: 10%;">' ;
-		str += '    </colgroup>' ;
-		str += '    <tr>' ;
-		str += '        <td>'+guestbookVo.no+'</td>' ;
-		str += '        <td>'+guestbookVo.name+'</td>' ;
-		str += '        <td>'+guestbookVo.regDate+'</td>' ;
-		str += '        <td><a href="">[삭제]</a></td>' ;
-		str += '    </tr>' ;
-		str += '    <tr>' ;
-		str += '        <td colspan=4 class="text-left">'+guestbookVo.content+'</td>' ;
-		str += '    </tr>' ;
-		str += '</table>' ;
+		str += '<table class="guestRead">';
+		str += '    <colgroup>';
+		str += '        <col style="width: 10%;">';
+		str += '        <col style="width: 40%;">';
+		str += '        <col style="width: 40%;">';
+		str += '        <col style="width: 10%;">';
+		str += '    </colgroup>';
+		str += '    <tr>';
+		str += '        <td>' + guestbookVo.no + '</td>';
+		str += '        <td>' + guestbookVo.name + '</td>';
+		str += '        <td>' + guestbookVo.regDate + '</td>';
+		str += '        <td><button id="delBtn" type="button"><a href="">[삭제]</a></button></td>';
+		str += '    </tr>';
+		str += '    <tr>';
+		str += '        <td colspan=4 class="text-left">' + guestbookVo.content
+				+ '</td>';
+		str += '    </tr>';
+		str += '</table>';
 
 		if (opt == "down") {
 			$("#listArea").append(str);
