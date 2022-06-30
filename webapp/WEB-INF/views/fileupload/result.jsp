@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -6,8 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath }/assets/css/gallery.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/assets/css/mysite.css"
+	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/assets/css/gallery.css"
+	rel="stylesheet" type="text/css">
 
 </head>
 
@@ -21,41 +24,42 @@
 
 		<div id="container" class="clearfix">
 			<!-- 게시판 aside -->
-			<c:import url="/WEB-INF/views/includes/asideBoard.jsp"></c:import>
+			<c:import url="/WEB-INF/views/includes/galleryAside.jsp"></c:import>
 			<!-- //게시판 aside -->
-			
-			
+
+
 			<div id="content">
-		
-			<div id="content-head">
-				<h3>첨부파일연습</h3>
-				<div id="location">
-					<ul>
-						<li>홈</li>
-						<li>갤러리</li>
-						<li class="last">첨부파일연습</li>
-					</ul>
+
+				<div id="content-head">
+					<h3>첨부파일연습</h3>
+					<div id="location">
+						<ul>
+							<li>홈</li>
+							<li>갤러리</li>
+							<li class="last">첨부파일연습</li>
+						</ul>
+					</div>
+					<div class="clear"></div>
 				</div>
-				<div class="clear"></div>
-			</div>
-			<!-- //content-head -->
-			
-			
-			<div id="file">
-				
+				<!-- //content-head -->
+
+
+				<div id="file">
+					${requestScope.savName}
 					<div>
-						<img id="resultImg" src="">
+						<img id="resultImg"
+							src="${pageContext.request.contextPath}/upload/${requestScope.saveName}">
 					</div>
 					<p>
-						<a id="btnUpload" href="${pageContext.request.contextPath }/fileupload/form"> 다시 업로드 하기 </a>
+						<a id="btnUpload" href="${pageContext.request.contextPath}/fileupload/form">다시 업로드 하기 </a>
 					</p>
-				
+
+				</div>
+				<!-- //file -->
+
 			</div>
-			<!-- //file -->
-		
-		</div>
-		<!-- //content  -->
-		
+			<!-- //content  -->
+
 		</div>
 		<!-- //container  -->
 

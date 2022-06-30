@@ -8,12 +8,12 @@ public class FileVo {
 	private String filePath;
 	private long fileSize;
 
-	
-	
 	public FileVo() {
+
 	}
-	
+
 	public FileVo(String orgName, String saveName, String filePath, long fileSize) {
+		super();
 		this.orgName = orgName;
 		this.saveName = saveName;
 		this.filePath = filePath;
@@ -21,14 +21,13 @@ public class FileVo {
 	}
 
 	public FileVo(int no, String orgName, String saveName, String filePath, long fileSize) {
+		super();
 		this.no = no;
 		this.orgName = orgName;
 		this.saveName = saveName;
 		this.filePath = filePath;
 		this.fileSize = fileSize;
 	}
-	
-	
 
 	public int getNo() {
 		return no;
@@ -70,11 +69,9 @@ public class FileVo {
 		this.fileSize = fileSize;
 	}
 
-	
-	
 	@Override
 	public String toString() {
-		return "FIleVo [no=" + no + ", orgName=" + orgName + ", saveName=" + saveName + ", filePath=" + filePath
+		return "FileVo [no=" + no + ", orgName=" + orgName + ", saveName=" + saveName + ", filePath=" + filePath
 				+ ", fileSize=" + fileSize + "]";
 	}
 
