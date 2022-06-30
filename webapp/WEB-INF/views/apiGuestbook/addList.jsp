@@ -219,7 +219,15 @@
 			dataType : "json",
 			success : function(gbVo) {
 				//성공시 처리해야될 코드 작성
+				
+	            //1개데이터 리스트 추가(그리기)하기 
+	            render(gVo, "up");
+	            //입력폼 초기화
+	            $("[name='name']").val("");
+	            $("[name='password']").val("");
+	            $("[name='content']").val("");
 			},
+			
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
