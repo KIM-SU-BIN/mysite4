@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet"
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet"
 	type="text/css"
 >
 <link href="${pageContext.request.contextPath }/assets/css/gallery.css" rel="stylesheet"
@@ -25,8 +25,9 @@
 		<!-- //해더 네비 -->
 
 		<div id="container" class="clearfix">
+		
 			<!-- 게시판 aside -->
-			<c:import url="/WEB-INF/views/includes/asideBoard.jsp"></c:import>
+			<c:import url="/WEB-INF/views/includes/galleryAside.jsp"></c:import>
 			<!-- //게시판 aside -->
 
 			<div id="content">
@@ -45,15 +46,17 @@
 				<!-- //content-head -->
 
 				<div id="file">
-					<form method="post" action="" enctype="multipart/form-data">
+					<form action="${pageContext.request.contextPath}/fileupload/upload" method="post" enctype="multipart/form-data">
 						<table>
 							<colgroup>
 								<col style="width: 600px;">
 								<col style="width: 220px;">
 							</colgroup>
 							<tr>
-								<td class="text-left"><input type="file" name="file"></td>
-								<td class="text-right"><button type="submit">파일업로드</button></td>
+								<td class="text-left">
+								<input type="file" name="file"></td>
+								<td class="text-right">
+								<button type="submit">파일업로드</button></td>
 							</tr>
 						</table>
 					</form>
