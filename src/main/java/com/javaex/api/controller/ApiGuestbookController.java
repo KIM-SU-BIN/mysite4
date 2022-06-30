@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,7 +45,7 @@ public class ApiGuestbookController {
 		return guestbookList;
 	}
 
-	// 방명록 저장
+	// 방명록 저장 ModelAttribute 방식
 	@ResponseBody
 	@RequestMapping(value = "/api/guestbook/add", method = { RequestMethod.GET, RequestMethod.POST })
 	public GuestBookVo add(@ModelAttribute GuestBookVo guestbookVo) {
@@ -57,12 +58,27 @@ public class ApiGuestbookController {
 
 	}
 
+	// 방명록 저장2 ResponseBody 방식
+	@ResponseBody
+	@RequestMapping(value = "/api/guestbook/add2", method = { RequestMethod.GET, RequestMethod.POST })
+	public GuestBookVo add2(@RequestBody GuestBookVo guestbookVo) {
+		// System.out.println("api/guestbook: add");
+		
+		GuestBookVo gVo = guestbookService.addGuest(guestbookVo);
+		System.out.println(gVo);
+		
+		return gVo;
+	}
+
+	
+	
+	
 	// 방명록 삭제
 	@ResponseBody
 	@RequestMapping(value = "/api/guestbook/delete2", method = { RequestMethod.GET, RequestMethod.POST })
 	public String delete2(@ModelAttribute GuestBookVo guestbookVo) {
 		System.out.println("ApiGuestbookController>delete2");
-		
+
 		String state = guestbookService.delete2(guestbookVo);
 
 		return state;

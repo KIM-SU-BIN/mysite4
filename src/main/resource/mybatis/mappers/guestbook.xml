@@ -31,11 +31,21 @@
          where no = #{no}
       ]]>
 	</select>
+	
 
+	<!-- 방명록 1개의 데이터 조회하기 : 등록시  필요한 쿼리문 -->
+	<select id="getGuest" parameterType="int" resultType="GuestBookVo">
+		<![CDATA[
+			select no, name, password, content, reg_date regDate
+			from guestbook
+			where no = #{no}
+		]]>
 
+	</select>
+	
 	<!-- *********************************************************************************** -->
 	<!-- 방명록 delete 데이터 1개 삭제 -->
-		<delete id="delete2" parameterType="GuestbookVo">
+	<delete id="delete2" parameterType="GuestbookVo">
 		<![CDATA[
 		
 		delete from guestbook
@@ -44,7 +54,7 @@
 		
 		]]>
 	</delete>
-	
+
 	<!-- delete 삭제 -->
 	<delete id="delete" parameterType="GuestbookVo">
 		<![CDATA[
@@ -65,9 +75,9 @@
 					name,
 					password,
 					content,
-					reg_date "date"
+					reg_date regDate
 			from guestbook
-			
+			order by no desc
 
 		]]>
 	</select>

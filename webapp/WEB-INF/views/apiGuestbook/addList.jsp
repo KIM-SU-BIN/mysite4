@@ -60,34 +60,33 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form action="" method="get">
-						<table id="guestAdd">
-							<colgroup>
-								<col style="width: 70px;">
-								<col>
-								<col style="width: 70px;">
-								<col>
-							</colgroup>
-							<tbody>
-								<tr>
-									<th><label class="form-text" for="input-uname">이름</label>
-									<td><input id="input-uname" type="text" name="name"></td>
-									<th><label class="form-text" for="input-pass">패스워드</label>
-									<td><input id="input-pass" type="password" name="pass"></td>
-								</tr>
-								<tr>
-									<td colspan="4"><textarea name="content" cols="72"
-											rows="5"></textarea></td>
-								</tr>
-								<tr class="button-area">
-									<td colspan="4" class="text-center"><button type="submit">등록</button></td>
-								</tr>
-							</tbody>
+					<table id="guestAdd">
+						<colgroup>
+							<col style="width: 70px;">
+							<col>
+							<col style="width: 70px;">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th><label class="form-text" for="input-uname">이름</label>
+								<td><input id="input-uname" type="text" name="name"></td>
+								<th><label class="form-text" for="input-password">패스워드</label>
+								<td><input id="input-pass" type="password" name="password"></td>
+							</tr>
+							<tr>
+								<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
+							</tr>
+							<tr class="button-area">
+								<td colspan="4" class="text-center"><button id="btnSubmit"
+										type="submit">등록</button></td>
+							</tr>
+						</tbody>
 
-						</table>
-						<!-- //guestWrite -->
+					</table>
+					<!-- //guestWrite -->
 
-					</form>
+
 					<!-- </form>	 -->
 
 
@@ -142,14 +141,13 @@
 
 </body>
 <script type="text/javascript">
-
 <!-- 준비가 끝나면 -->
 	$(document).ready(function() {
 		/* 리스트 요청하고 그리기 */
 		fetchList();
 	});
 
-	// 저장 버튼을 클릭했을 때 
+	/*// 저장 버튼을 클릭했을 때 
 	$("#btnSubmit").on("click", function() {
 		console.log("저장버튼 클릭");
 
@@ -160,27 +158,30 @@
 
 		//데이터 객체로 묶기
 		var guestbookVo = {
-					name : name,
-					password : password,
-					content : content
+			name : name,
+			password : password,
+			content : content
 		};
 
-		/* 리스트 요청 */
-		$.ajax({
+		console.log(guestbookVo);*/
+		
+		
 
-			/* url : "${pageContext.request.contextPath }/api/guestbook/add?name="+name+"&password="+password+"&content="+content,	 */
+		/* 리스트 요청 */
+		/*$.ajax({
+
 			url : "${pageContext.request.contextPath }/api/guestbook/add",
 			type : "post",
 			//contentType : "application/json",
 			data : guestbookVo, //파라미터 정리된다
-			
-			
+
 			dataType : "json",
 			success : function(gVo) {
-				/* 1개데이터 리스트 추가(그리기)하기 */
+				
+				//1개데이터 리스트 추가(그리기)하기 
 				render(gVo, "up");
 
-				/* 입력폼 초기화 */
+				//입력폼 초기화
 				$("[name='name']").val("");
 				$("[name='password']").val("");
 				$("[name='content']").val("");
@@ -190,6 +191,40 @@
 				console.error(status + " : " + error);
 			}
 		});
+	});
+		*/	
+
+
+	/* 저장 버튼 클릭했을 때 jquery로 요청(json) */
+	$("#btnSubmit").on("click", function() {
+		console.log("저장버튼 클릭");
+
+		//데이터 수집
+		var name = $("[name='name']").val();
+		var password = $("[name='password']").val();
+		var content = $("[name='content']").val();
+
+		//데이터 객체로 묶기
+		var guestbookVo = {
+			name : name,
+			password : password,
+			content : content
+		};
+
+		$.ajax({
+			url : "${pageContext.request.contextPath }/api/guestbook/add2",
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(guestbookVo), //js객체를 JSON문자열로 변경
+			dataType : "json",
+			success : function(gbVo) {
+				//성공시 처리해야될 코드 작성
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+
 	});
 
 	/* ---------------------------------------------------모달-------------------------------------------------------- */
@@ -257,12 +292,12 @@
 
 				//성공이면 지우고 
 				if (result == "success") {
-					$("#t"+no).remove();
-					
+					$("#t" + no).remove();
+
 					//모달창 닫기
 					$("#delModal").modal("hide");
-					
-				} else {			//실패면 안 지우기
+
+				} else { //실패면 안 지우기
 					alert("비밀번호를 확인하세요.");
 				}
 
@@ -322,7 +357,8 @@
 		str += '        <td><button class="btnDel" type="button" data-no="' +guestbookVo.no+ '">삭제</button></td>';
 		str += '    </tr>';
 		str += '    <tr>';
-		str += '        <td colspan=4 class="text-left">'+guestbookVo.content+ '</td>';
+		str += '        <td colspan=4 class="text-left">' + guestbookVo.content
+				+ '</td>';
 		str += '    </tr>';
 		str += '</table>';
 
