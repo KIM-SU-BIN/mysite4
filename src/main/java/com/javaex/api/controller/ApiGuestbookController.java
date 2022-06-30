@@ -27,7 +27,7 @@ public class ApiGuestbookController {
 	// 방명록 첫페이지 (등록폼 + 리스트:ajax)
 	@RequestMapping(value = "/api/guestbook/addList", method = { RequestMethod.GET, RequestMethod.POST })
 	public String addList() {
-		System.out.println("ApiGuestbookController>addList()");
+		System.out.println("ApiGuestbookController>addList");
 
 		return "apiGuestbook/addList";
 	}
@@ -36,7 +36,7 @@ public class ApiGuestbookController {
 	@ResponseBody
 	@RequestMapping(value = "/api/guestbook/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public List<GuestBookVo> list() {
-		System.out.println("ApiGuestbookController>list()");
+		System.out.println("ApiGuestbookController>list");
 
 		List<GuestBookVo> guestbookList = guestbookService.getGuestList();
 		System.out.println(guestbookList);
@@ -48,7 +48,7 @@ public class ApiGuestbookController {
 	@ResponseBody
 	@RequestMapping(value = "/api/guestbook/add", method = { RequestMethod.GET, RequestMethod.POST })
 	public GuestBookVo add(@ModelAttribute GuestBookVo guestbookVo) {
-		System.out.println("ApiGuestbookController->add()");
+		System.out.println("ApiGuestbookController->add");
 
 		GuestBookVo gVo = guestbookService.addGuest(guestbookVo);
 		System.out.println(gVo);

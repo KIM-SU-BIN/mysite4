@@ -142,6 +142,7 @@
 
 </body>
 <script type="text/javascript">
+
 <!-- 준비가 끝나면 -->
 	$(document).ready(function() {
 		/* 리스트 요청하고 그리기 */
@@ -159,18 +160,21 @@
 
 		//데이터 객체로 묶기
 		var guestbookVo = {
-			name : name,
-			password : password,
-			content : content
+					name : name,
+					password : password,
+					content : content
 		};
 
 		/* 리스트 요청 */
 		$.ajax({
 
+			/* url : "${pageContext.request.contextPath }/api/guestbook/add?name="+name+"&password="+password+"&content="+content,	 */
 			url : "${pageContext.request.contextPath }/api/guestbook/add",
 			type : "post",
 			//contentType : "application/json",
 			data : guestbookVo, //파라미터 정리된다
+			
+			
 			dataType : "json",
 			success : function(gVo) {
 				/* 1개데이터 리스트 추가(그리기)하기 */
@@ -318,8 +322,7 @@
 		str += '        <td><button class="btnDel" type="button" data-no="' +guestbookVo.no+ '">삭제</button></td>';
 		str += '    </tr>';
 		str += '    <tr>';
-		str += '        <td colspan=4 class="text-left">' + guestbookVo.content
-				+ '</td>';
+		str += '        <td colspan=4 class="text-left">'+guestbookVo.content+ '</td>';
 		str += '    </tr>';
 		str += '</table>';
 

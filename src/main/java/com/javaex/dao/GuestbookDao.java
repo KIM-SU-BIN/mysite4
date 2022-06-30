@@ -39,6 +39,8 @@ public class GuestbookDao {
 		
 		return guestbookVo;
 		
+		//한줄로 입력하면 : return sqlSession.selectOne("guestbook.getGuest", no);
+		
 	}
 
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -48,7 +50,6 @@ public class GuestbookDao {
 		System.out.println("guestbookDao>delete2");
 
 		return sqlSession.delete("guestbook.delete2", guestbookVo);
-		
 		
 	}
 	
