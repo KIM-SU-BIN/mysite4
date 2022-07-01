@@ -57,17 +57,16 @@
 
 							<!-- 아이디 -->
 							<div class="form-group">
-								<label class="form-text" for="input-uid">아이디</label> <input
-									type="text" id="input-uid" name="id" value=""
-									placeholder="아이디를 입력하세요">
-								<button type="button" id="btncheck">중복체크</button>
+								<label class="form-text" for="input-uid">아이디</label> 
+								<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
+								
+								<button type="button" id="btnCheck">중복체크</button>
 							</div>
 
 							<!-- 비밀번호 -->
 							<div class="form-group">
-								<label class="form-text" for="input-pass">패스워드</label> <input
-									type="text" id="input-pass" name="password" value=""
-									placeholder="비밀번호를 입력하세요">
+								<label class="form-text" for="input-pass">패스워드</label> 
+								<input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요">
 							</div>
 
 							<!-- 이름 -->
@@ -133,7 +132,7 @@
 		
 		//8자리 비번이 아니면 가입 불가
 		if (password.length < 8 ) {
-			alert("비밀번호를 입력해주세요");
+			alert("No Password");
 			return false;
 		}
 		//약관동의
@@ -145,7 +144,40 @@
 			}
 		
 		//둘 다 맞을 경우 회원가입 진행
-		return true
+		return true;
+	});
+	
+	
+	//아이디 중복체크
+	$("#btnCheck").on("click", function() {
+		console.log("중복체크 버튼 클릭");
+	
+		var id = $("#input-uid").val();
+	
+		//아이디가 없을 경우
+		if(id != null){
+			
+			$.ajax({
+	               url: "${pageContext.request.contextPath}/api/user/checkId",
+	               type : "post",
+	               contentType : "application/json",
+	               data: JSON.stringify(id),
+	               dataType: "json",
+	               success : function(result){
+	            	   
+	            	   /*성공시 처리해야될 코드 작성*/
+	            	   if(result == true){
+	            		   alert("사용할 수 없는 아이디입니다.");
+	            		   
+	            	   } else {
+	            		   alert("사용 가능한 아이디입니다.");
+	            	   }
+	            	   
+	               },	
+	               		error : function(XHR, status, error) {
+						console.error(status + " : " + error);
+	         });
+		}
 	});
 	
 </script>

@@ -23,6 +23,7 @@ public class ApiUserController {
 	// 메소드 일반
 
 	//아이디 중복체크 (login회원가입) : 정보 한번에 가져오기 위해 @RequestBody 사용
+	
 	@ResponseBody
 	@RequestMapping(value = "/checkId", method = { RequestMethod.GET, RequestMethod.POST })
 	public String checkId(@RequestBody String id)  {
