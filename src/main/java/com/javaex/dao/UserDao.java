@@ -18,6 +18,13 @@ public class UserDao {
 	// 메소드
 
 	// 메소드 일반
+	//아이디 중복확인 
+	public UserVo getId(String id) {
+		System.out.println("UserDao.getId()");
+		
+		return sqlSession.selectOne("user.getId", id);
+		
+	}
 	
 	//수정하기
 	public int userUpdate(UserVo userVo) {

@@ -60,7 +60,7 @@
 								<label class="form-text" for="input-uid">아이디</label> <input
 									type="text" id="input-uid" name="id" value=""
 									placeholder="아이디를 입력하세요">
-								<button type="button" id="">중복체크</button>
+								<button type="button" id="btncheck">중복체크</button>
 							</div>
 
 							<!-- 비밀번호 -->

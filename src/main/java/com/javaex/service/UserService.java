@@ -18,7 +18,26 @@ public class UserService {
 	// 메소드
 
 	// 메소드 일반
-	
+
+	//아이디 중복체크
+	public String checkId(String id) {
+		System.out.println("UserService>checkId()");
+
+		UserVo userVo  = userDao.getId(id);
+
+		if (userVo == null) {
+
+			// 중복된게 없을때 성공
+			return "success";
+
+		} else {
+			
+			return "fail";
+		}
+	}
+
+//******************************************************************************************************************//	
+
 	// 수정 update
 	public int update(UserVo userVo) {
 		System.out.println("UserService.update()");
@@ -27,7 +46,6 @@ public class UserService {
 
 		return count;
 	}
-	
 
 	// getUser
 	public UserVo getUser(int no) {
