@@ -12,6 +12,7 @@
 	rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/guestbook.css"
 	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">	
 
 </head>
 
@@ -116,7 +117,7 @@
 			<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		</div>
 		<!-- //footer -->
-	</div>
+	
 	<!-- //wrap -->
 </body>
 </html>

@@ -6,10 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet"
-	type="text/css">
-<link href="${pageContext.request.contextPath}/assets/css/user.css" rel="stylesheet"
-	type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css"
+	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/user.css"
+	rel="stylesheet" type="text/css">
+	
+<!-- js -->
+<link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -50,7 +53,7 @@
 
 				<div id="user">
 					<div id="joinForm">
-						<form action="./join" method="get">
+						<form id="join-form" action="./join" method="get">
 
 							<!-- 아이디 -->
 							<div class="form-group">
@@ -97,6 +100,7 @@
 							</div>
 
 						</form>
+						
 					</div>
 					<!-- //joinForm -->
 				</div>
@@ -113,4 +117,36 @@
 	<!-- //wrap -->
 
 </body>
+<script type="text/javascript">
+
+	//아이디,비번 값 입력하지 않았을 때 경고창 띄우기
+	$("#join-form").on("submit", function() {
+		console.log("회원가입 버튼 클릭");
+
+		var id = $("#input-uid").val();
+		var password = $("#input-pass").val();
+
+		if (id == "" || id == null ) {
+			alert("아이디를 입력해주세요");
+			return false;
+		}
+		
+		//8자리 비번이 아니면 가입 불가
+		if (password.length < 8 ) {
+			alert("비밀번호를 입력해주세요");
+			return false;
+		}
+		//약관동의
+		var agree = $("#chk-agree").is(":checked");
+		if(agree ==false ){
+			alert("약관에 동의하십시오.");
+			
+			return false;
+			}
+		
+		//둘 다 맞을 경우 회원가입 진행
+		return true
+	});
+	
+</script>
 </html>
