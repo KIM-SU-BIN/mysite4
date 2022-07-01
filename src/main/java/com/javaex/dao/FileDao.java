@@ -17,13 +17,14 @@ public class FileDao {
 	// 메소드
 
 	// 메소드 일반
+	//저장
 	public int insertFile(FileVo fileVo) {
 		System.out.println("FileDao>insertFile");
 		
 		int count = sqlSession.insert("insert.file", fileVo);
 
 		return count;
-		//return sqlSession.insert("insert.file", fileVo);
+		// ==return sqlSession.insert("insert.file", fileVo);
 
 	}
 
