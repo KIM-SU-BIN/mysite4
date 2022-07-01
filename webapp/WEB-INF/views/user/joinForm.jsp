@@ -10,9 +10,10 @@
 	rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/user.css"
 	rel="stylesheet" type="text/css">
-	
+
 <!-- js -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 
 </head>
 <body>
@@ -57,16 +58,18 @@
 
 							<!-- 아이디 -->
 							<div class="form-group">
-								<label class="form-text" for="input-uid">아이디</label> 
-								<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
-								
+								<label class="form-text" for="input-uid">아이디</label> <input
+									type="text" id="input-uid" name="id" value=""
+									placeholder="아이디를 입력하세요">
+
 								<button type="button" id="btnCheck">중복체크</button>
 							</div>
 
 							<!-- 비밀번호 -->
 							<div class="form-group">
-								<label class="form-text" for="input-pass">패스워드</label> 
-								<input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요">
+								<label class="form-text" for="input-pass">패스워드</label> <input
+									type="text" id="input-pass" name="password" value=""
+									placeholder="비밀번호를 입력하세요">
 							</div>
 
 							<!-- 이름 -->
@@ -99,7 +102,7 @@
 							</div>
 
 						</form>
-						
+
 					</div>
 					<!-- //joinForm -->
 				</div>
@@ -117,7 +120,6 @@
 
 </body>
 <script type="text/javascript">
-
 	//아이디,비번 값 입력하지 않았을 때 경고창 띄우기
 	$("#join-form").on("submit", function() {
 		console.log("회원가입 버튼 클릭");
@@ -125,60 +127,59 @@
 		var id = $("#input-uid").val();
 		var password = $("#input-pass").val();
 
-		if (id == "" || id == null ) {
+		if (id == "" || id == null) {
 			alert("아이디를 입력해주세요");
 			return false;
 		}
-		
+
 		//8자리 비번이 아니면 가입 불가
-		if (password.length < 8 ) {
+		if (password.length < 8) {
 			alert("No Password");
 			return false;
 		}
 		//약관동의
 		var agree = $("#chk-agree").is(":checked");
-		if(agree ==false ){
+		if (agree == false) {
 			alert("약관에 동의하십시오.");
-			
+
 			return false;
-			}
-		
+		}
+
 		//둘 다 맞을 경우 회원가입 진행
 		return true;
 	});
-	
-	
+
 	//아이디 중복체크
 	$("#btnCheck").on("click", function() {
 		console.log("중복체크 버튼 클릭");
-	
+
 		var id = $("#input-uid").val();
-	
+
 		//아이디가 없을 경우
-		if(id != null){
-			
+		if (id != null) {
+
 			$.ajax({
-	               url: "${pageContext.request.contextPath}/api/user/checkId",
-	               type : "post",
-	               contentType : "application/json",
-	               data: JSON.stringify(id),
-	               dataType: "json",
-	               success : function(result){
-	            	   
-	            	   /*성공시 처리해야될 코드 작성*/
-	            	   if(result == true){
-	            		   alert("사용할 수 없는 아이디입니다.");
-	            		   
-	            	   } else {
-	            		   alert("사용 가능한 아이디입니다.");
-	            	   }
-	            	   
-	               },	
-	               		error : function(XHR, status, error) {
-						console.error(status + " : " + error);
-	         });
+				url : "${pageContext.request.contextPath}/api/user/checkId",
+				type : "post",
+				contentType : "application/json",
+				data : JSON.stringify(id),
+				dataType : "json",
+				success : function(result) {
+
+					/*성공시 처리해야될 코드 작성*/
+					if (result == "success") {
+						alert("사용할 수 없는 아이디입니다.");
+
+					} else {
+						alert("사용 가능한 아이디입니다.");
+					}
+
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
 		}
 	});
-	
 </script>
 </html>

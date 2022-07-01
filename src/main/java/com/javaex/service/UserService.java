@@ -23,7 +23,7 @@ public class UserService {
 	public String checkId(String id) {
 		System.out.println("UserService>checkId()");
 
-		UserVo userVo  = userDao.getId(id);
+		String userVo  = userDao.getId(id);
 
 		if (userVo == null) {
 
