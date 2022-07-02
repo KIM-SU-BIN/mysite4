@@ -6,9 +6,12 @@
 		<typeAlias alias="BoardVo" type="com.javaex.vo.BoardVo" />
 		<typeAlias alias="GuestBookVo" type="com.javaex.vo.GuestBookVo" />
 	</typeAliases>
+	
+	<!-- 새로운 폴더 생성시 연동을 위해 꼭 추가 할 것 -->
 	<mappers>
 		<mapper resource="mybatis/mappers/user.xml" />
 		<mapper resource="mybatis/mappers/board.xml" />
 		<mapper resource="mybatis/mappers/guestbook.xml" />
+		<mapper resource="mybatis/mappers/gallery.xml" />
 	</mappers>
 </configuration>
