@@ -149,37 +149,6 @@
 		return true;
 	});
 
-	//아이디 중복체크
-	$("#btnCheck").on("click", function() {
-		console.log("중복체크 버튼 클릭");
 
-		var id = $("#input-uid").val();
-
-		//아이디가 없을 경우
-		if (id != null) {
-
-			$.ajax({
-				url : "${pageContext.request.contextPath}/api/user/checkId",
-				type : "post",
-				contentType : "application/json",
-				data : JSON.stringify(id),
-				dataType : "json",
-				success : function(result) {
-
-					/*성공시 처리해야될 코드 작성*/
-					if (result == "success") {
-						alert("사용할 수 없는 아이디입니다.");
-
-					} else {
-						alert("사용 가능한 아이디입니다.");
-					}
-
-				},
-				error : function(XHR, status, error) {
-					console.error(status + " : " + error);
-				}
-			});
-		}
-	});
 </script>
 </html>
