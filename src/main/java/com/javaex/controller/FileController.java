@@ -26,7 +26,6 @@ public class FileController {
 	@RequestMapping(value = "/fileupload/upload", method = { RequestMethod.GET, RequestMethod.POST })
 	public String upload(@RequestParam("file") MultipartFile file, Model model) {
 		System.out.println("fileupload>upload");
-
 		System.out.println(file.getOriginalFilename());
 		
 		String saveName = fileService.save(file);
