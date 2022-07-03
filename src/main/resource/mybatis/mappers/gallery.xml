@@ -3,11 +3,17 @@
 
 <mapper namespace="gallery">
 
-
-
-
-
-
+	<!-- 전체 가져오기 -->
+	<select id="getGallery" resultType="GalleryVo">
+	<![CDATA[
+			select  no
+			        ,user_no userNo
+			        ,content
+			        ,saveName
+			from gallery
+			where saveName = #{saveName}
+		]]>
+	</select>
 
 
 </mapper>
