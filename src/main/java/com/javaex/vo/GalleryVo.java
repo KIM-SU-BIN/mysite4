@@ -1,7 +1,5 @@
 package com.javaex.vo;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class GalleryVo {
 
 	private int no;
