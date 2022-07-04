@@ -3,15 +3,42 @@
 
 <mapper namespace="gallery">
 
-	<!-- 전체 가져오기 -->
-	<select id="getGallery" resultType="GalleryVo">
-	<![CDATA[
-			select  no
-			        ,user_no userNo
+
+	<!-- 파일정보 저장 -->
+	<insert id="insert" parameterType="galleryVo">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select
+			SEQ_GALLERY_NO.nextval from dual
+		</selectKey>
+		
+		<![CDATA[
+			insert into gallery
+			values(#{no}, #{userNo}, #{content}, #{filePath}, #{orgName}, #{saveName}, #{fileSize})
+		]]>
+	</insert>
+
+	<!-- 1개 정보 가져오기 -->
+	<select id="getImg" parameterType="int" resultType="galleryVo">
+		<![CDATA[
+			select g.no
+					,g.user_no userNo
 			        ,content
 			        ,saveName
-			from gallery
-			where saveName = #{saveName}
+			from gallery g, users u
+			where g.user_no = u.no
+			and g.no = #{no}
+		]]>
+	</select>
+
+	<!-- 전체 가져오기 -->
+	<select id="getGallery" resultType="GalleryVo">
+		<![CDATA[
+			select g.no
+					,g.user_no userNo
+			        ,u.name userName
+			        ,saveName
+			from gallery g, users u
+			where g.user_no = u.no
 		]]>
 	</select>
 
