@@ -28,11 +28,13 @@
 <body>
 	<div id="wrap">
 
-		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
+		<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 		<!-- //header -->
+
+		<c:import url="/WEB-INF/views/includes/nav.jsp"></c:import>
 		<!-- //nav -->
 
-		<c:import url="/WEB-INF/views/include/galleryAside.jsp"></c:import>
+		<c:import url="/WEB-INF/views/includes/galleryAside.jsp"></c:import>
 		<!-- //aside -->
 
 
@@ -55,22 +57,23 @@
 			<div id="gallery">
 				<div id="list">
 
-
-					<button id="btnImgUpload">이미지올리기</button>
+					<!-- 로그인 했을 경우에만 버튼 보임 -->
+					<c:if test="${authUser.no != null}"><button id="btnImgUpload">이미지올리기</button></c:if>
 					<div class="clear"></div>
-
 
 					<ul id="viewArea">
 
 						<!-- 이미지반복영역 -->
-						<li>
-							<div class="view">
-								<img class="imgItem" src="">
-								<div class="imgWriter">
-									작성자: <strong>유재석</strong>
+						<c:forEach items="${galleryList}" var="galleryVo">
+							<li id="li${galleryVo.no}" data-no="${galleryVo.no}">
+								<div class="view">
+									<img class="imgItem" src="${pageContext.request.contextPath}/upload/${galleryVo.saveName}">
+									<div class="imgWriter">
+										작성자: <strong>${galleryVo.userName}</strong>
+									</div>
 								</div>
-							</div>
-						</li>
+							</li>
+						</c:forEach>
 						<!-- 이미지반복영역 -->
 
 
@@ -83,16 +86,14 @@
 		<!-- //content  -->
 		<div class="clear"></div>
 
-		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- //footer -->
 
 	</div>
 	<!-- //wrap -->
 
-
-
 	<!-- 이미지등록 팝업(모달)창 -->
-	<div class="modal fade" id="addModal" >
+	<div class="modal fade" id="addModal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -103,18 +104,21 @@
 					<h4 class="modal-title">이미지등록</h4>
 				</div>
 
-				<form method="post" action="./upload">
-					<input type="hidden" name="userNo" value="${authUser.no }">
+				<form method="post" action="./upload" enctype="multipart/form-data">
+					<input type="hidden" name="userNo" value="${authUser.no}">
 					<div class="modal-body">
+					
 						<div class="form-group">
 							<label class="form-text">글작성</label> 
-							<input id="addModalContent" type="text" name="" value="">
+							<input id="addModalContent"	type="text" name="content" value="">
 						</div>
+						
 						<div class="form-group">
 							<label class="form-text">이미지선택</label> 
-							<input id="file" type="file" name="" value="">
+							<input id="file" type="file" name="file" value="">
 						</div>
 					</div>
+					
 					<div class="modal-footer">
 						<button type="submit" class="btn" id="btnUpload">등록</button>
 					</div>
@@ -173,11 +177,25 @@
 </body>
 
 <script type="text/javascript">
-	
+
+	<!-- 준비가 끝났을때 -->
+	$(document).ready(function() {
+		console.log("data List")
+	});
+
+	/* 이미지올리기 버튼 클릭 - 모달창 */
+	$("#btnImgUpload").on("click", function() {
+		console.log("이미지올리기 버튼 클릭");
+
+		//데이터 모으기
+		var $this = $(this);
+		var no = $this.data("no");
+		
+		
+		
+		
+
+	})
 </script>
-
-
-
-
 </html>
 
