@@ -18,7 +18,7 @@ public class FileDao {
 
 	// 메소드 일반
 	//저장
-	public int insertFile(FileVo fileVo) {
+	public int fileInsert(FileVo fileVo) {
 		System.out.println("FileDao>insertFile");
 		
 		int count = sqlSession.insert("insert.file", fileVo);
@@ -28,4 +28,5 @@ public class FileDao {
 
 	}
 
+	
 }
