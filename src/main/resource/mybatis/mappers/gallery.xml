@@ -5,11 +5,7 @@
 
 
 	<!-- 파일정보 저장 -->
-	<insert id="insert" parameterType="galleryVo">
-		<selectKey keyProperty="no" resultType="int" order="BEFORE">
-			select
-			SEQ_GALLERY_NO.nextval from dual
-		</selectKey>
+	<insert id="insert" parameterType="GalleryVo">
 		
 		<![CDATA[
 			insert into gallery
@@ -18,7 +14,7 @@
 	</insert>
 
 	<!-- 1개 정보 가져오기 -->
-	<select id="getImg" parameterType="int" resultType="galleryVo">
+	<select id="getImg" parameterType="int" resultType="GalleryVo">
 		<![CDATA[
 			select g.no
 					,g.user_no userNo

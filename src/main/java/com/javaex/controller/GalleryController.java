@@ -15,6 +15,7 @@ import com.javaex.service.GalleryService;
 import com.javaex.vo.GalleryVo;
 
 @Controller
+@RequestMapping(value = "/gallery")
 public class GalleryController {
 
 	// 필드
@@ -28,7 +29,7 @@ public class GalleryController {
 	// 메소드 일반
 
 	// 이미지 등록
-	@RequestMapping(value = "/gallery/upload", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/upload", method = {RequestMethod.GET, RequestMethod.POST})
 	public String imgUpload(@ModelAttribute GalleryVo galleryVo) {
 		System.out.println("GalleryController->imgUpload()");
 
@@ -38,19 +39,21 @@ public class GalleryController {
 		
 		return "redirect:/gallery/list";
 	}
+	
 
 	// 이미지 1개 정보 가져오기
 	@ResponseBody
-	@RequestMapping(value = "/gallery/getImg", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/getImg", method = {RequestMethod.GET, RequestMethod.POST})
 	public GalleryVo getImg(Model model, @RequestParam("no") int no) {
 		
 		System.out.println("GalleryController->getImg()");
 	
 		return galleryService.getImg(no);
 	}
+	
 
 	// 업로드 폼
-	@RequestMapping(value = "/gallery/list", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
 	public String listForm(Model model) {
 		System.out.println("GalleryController>listForm");
 

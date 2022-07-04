@@ -9,13 +9,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link
-	href="${pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.css"
-	rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath }/assets/css/mysite.css"
-	rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath }/assets/css/gallery.css"
-	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/assets/bootstrap/css/bootstrap.css"	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/assets/css/gallery.css"	rel="stylesheet" type="text/css">
 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
@@ -139,8 +135,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 					<h4 class="modal-title">이미지보기</h4>
@@ -157,14 +152,11 @@
 					</div>
 
 				</div>
-				<form method="" action="">
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 						<button type="button" class="btn btn-danger" id="btnDel">삭제</button>
 					</div>
 
-
-				</form>
 
 			</div>
 			<!-- /.modal-content -->

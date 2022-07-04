@@ -21,7 +21,7 @@ public class FileDao {
 	public int fileInsert(FileVo fileVo) {
 		System.out.println("FileDao>insertFile");
 		
-		int count = sqlSession.insert("insert.file", fileVo);
+		int count = sqlSession.insert("files.insert", fileVo);
 
 		return count;
 		// ==return sqlSession.insert("insert.file", fileVo);
