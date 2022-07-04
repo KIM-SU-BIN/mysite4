@@ -1,35 +1,41 @@
--- files 테이블/시퀀스 삭제
-drop table files;
-drop sequence seq_file_no;
+--gallery 테이블 삭제
+drop table gallery;
+--gallery 시퀀스 삭제
+drop sequence seq_gallery_no;
 
--- files 출력
-select no
-        ,org_name
-        ,save_name
-        ,path
-        ,file_size
-from files;
-
+--gallery 출력
 select *
-from files;
+from gallery;
+
+select no
+        ,user_no
+        ,content
+        ,filePath
+        ,orgName
+        ,saveName
+        ,fileSize
+from gallery;
 
 
--- files 테이블 생성
-create table files (
-    no  number,
-    org_name 		varchar2(1000) not null,
-    save_name 		varchar2(1000) not null,
-    path 			varchar2(1000) not null,
-    file_size long not null,
-    primary key(no)
+--gallery 테이블 생성
+create table gallery (
+  no    number,
+  user_no   number,
+  content   varchar2(1000),
+  filePath  varchar2(500),
+  orgName   varchar2(200),
+  saveName  varchar2(500),
+  fileSize  number,
+  PRIMARY KEY (no),
+  constraint gallery_fk foreign key (user_no)
+  references users(no)
 );
 
--- file 시퀀스 생성
-create sequence seq_file_no
+--gallery 시퀀스 생성
+create sequence seq_gallery_no
 increment by 1
 start with 1
 nocache;
 
-rollback;
-
 commit;
+
