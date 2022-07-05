@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,8 +38,13 @@ public class BoardController {
 		System.out.println("BoardController>list4");
 		
 		//getBoardList4() -> crtPage 넣어서 서비스로 넘겨주기
-		List<BoardVo> boardList = boardService.getBoardList4(crtPage);
-		model.addAttribute("boardList", boardList);
+		//List<BoardVo> boardList = boardService.getBoardList4(crtPage);
+		//model.addAttribute("boardList", boardList);
+		
+		Map<String, Object> pMap = boardService.getBoardList4(crtPage);
+		model.addAttribute("pMap", pMap);
+		
+		System.out.println("controller --> " + pMap);
 		
 		return "board/list4";
 	}

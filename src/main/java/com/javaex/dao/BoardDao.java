@@ -21,33 +21,41 @@ public class BoardDao {
 	// 메소드
 
 	// 메소드 일반
-	//리스트4 (일반 게시판 =====> + 페이징 + 검색)
-	public List<BoardVo> selectList4(int startRnum , int endRnum) {
+	// 리스트4 (일반 게시판 =====> + 페이징 + 검색)
+	public List<BoardVo> selectList4(int startRnum, int endRnum) {
 		System.out.println("BoardDao>selectList4");
-		
+
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("startRnum", startRnum);
 		map.put("endRnum", endRnum);
-		System.out.println(map);		//출력 결과 : {startRnum=1, endRnum=5} -> Dao에 int listCnt = 5; 페이지당 글 수가 5이기 때문
+		System.out.println(map); // 출력 결과 : {startRnum=1, endRnum=5} -> Dao에 int listCnt = 5; 페이지당 글 수가 5이기 때문
 
 		List<BoardVo> boardList = sqlSession.selectList("board.selectList4", map);
 		System.out.println("boardList");
-		
+
 		return boardList;
 	}
-	
+
+	// 전체글 갯수
+	public int selectTotalCnt() {
+		System.out.println("BoardDao>selectTotalCnt()");
+
+		int totalCnt = sqlSession.selectOne("board.selectTotalCnt");
+
+		return totalCnt;
+	}
+
 // ================================================================================================================//
-	
-	//수정
+
+	// 수정
 	public int modify(BoardVo boardVo) {
 		System.out.println("BoardDao>modify");
-		
+
 		int count = sqlSession.update("board.modify", boardVo);
-		
+
 		return count;
 	}
-	
-	
+
 	// 조회수
 	public int hitUpdate(int no) {
 		System.out.println("BoardDao>hitUpdate");
@@ -65,7 +73,7 @@ public class BoardDao {
 
 		return bVo;
 	}
-	
+
 //******************************************  삭제 ***************************************** 	
 
 	public int delete(int no) {
@@ -77,7 +85,7 @@ public class BoardDao {
 	}
 
 //******************************************  write	***************************************** 	
-	
+
 	public int boardInsert(BoardVo boardVo) {
 		System.out.println("BoardDao>write");
 
@@ -96,14 +104,14 @@ public class BoardDao {
 
 		return bList;
 	}
-	
+
 	// list 전체 글 가져올 경우 String keyword만 없음!
-	/*public List<BoardVo> getBoard() {
-		System.out.println("BoardDao>boardList");
-
-		List<BoardVo> bList = sqlSession.selectList("board.boardList");
-
-		return bList;
-	}*/
+	/*
+	 * public List<BoardVo> getBoard() { System.out.println("BoardDao>boardList");
+	 * 
+	 * List<BoardVo> bList = sqlSession.selectList("board.boardList");
+	 * 
+	 * return bList; }
+	 */
 
 }
