@@ -23,9 +23,22 @@ public class BoardController {
 	BoardService boardService;
 
 	// 생성자
+	
 	// 메소드
+	
 	// 메소드-일반
-
+	//리스트4 (일반 게시판 =====> + 페이징 + 검색)
+	@RequestMapping (value = "/list4", method = { RequestMethod.GET, RequestMethod.POST })
+	public String list4(Model model, @RequestParam("crtPage") int crtPage) {
+		System.out.println("BoardController>list4");
+		
+		//getBoardList4() -> crtPage 넣어서 서비스로 넘겨주기
+		List<BoardVo> boardList = boardService.getBoardList4(crtPage);
+		model.addAttribute("boardList", boardList);
+		
+		return "board/list4";
+	}
+	
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 일반+검색 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 	@RequestMapping(value = "/list3", method = { RequestMethod.GET, RequestMethod.POST })

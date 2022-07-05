@@ -20,6 +20,40 @@ public class BoardService {
 	// 메소드
 
 	// 메소드 일반
+
+	//리스트4 (일반 게시판 =====> + 페이징 + 검색)
+	//crtPage : 현재페이지
+	public List<BoardVo> getBoardList4(int crtPage) {
+		System.out.println("board>getBoardList4");
+		
+		//////////////////////////////////////////////
+		//리스트 가져오기
+		//////////////////////////////////////////////
+		
+		//페이지당 글 개수(총 10페이지 기준)
+		int listCnt = 5;
+		
+		//현재 페이지
+		
+		
+		
+		//listCnt에 따라 startRnum가 변함
+		//시작글 번호
+		int startRnum = (crtPage-1)*listCnt+1; 
+		
+		//끝글 번호
+		int endRnum = (startRnum + listCnt)-1; 
+		
+		//page 찍어보기 : 브라우저 주소 mysite4/board/list4?crtPage=1
+		//System.out.println(listCnt);
+		
+		List<BoardVo> boardList = boardDao.selectList4(startRnum, endRnum);
+		
+		return boardList;
+	}
+	
+// ================================================================================================================//	
+
 	//수정
 	public int modify(BoardVo boardVo) {
 		System.out.println("board.modify");
@@ -58,14 +92,25 @@ public class BoardService {
 		return count;
 	}
 	
-	//write 쓰기
+	//write 글쓰기
 	public int write(BoardVo boardVo) {
 		System.out.println("BoardService>write");
 		
-		// dao를 통해서 데이터 저장
-		int count = boardDao.boardInsert(boardVo);
+		//list4 임시 : 127개의 게시글 작성을 위한 코드
+		for(int i=1; i<=127; i++) {
+			
+			boardVo.setTitle(i+"번째 게시글(제목) 입니다.");
+			boardVo.setContent(i+"번째 게시글(내용) 입니다.");
+			
+			boardDao.boardInsert(boardVo);
+
+		}
 		
-		return count;
+		// dao를 통해서 데이터 저장
+		//return boardDao.boardInsert(boardVo);
+		
+		//임시ver
+		return 1;
 	}
 	
 	
