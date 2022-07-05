@@ -33,15 +33,14 @@ public class BoardService {
 		//페이지당 글 개수(총 10페이지 기준)
 		int listCnt = 5;
 		
-		//현재 페이지
+		// 현재 페이지 -> 페이지가 -1 페이지 될 수 없음 (즉 0보다 작으면 무조건 1페이지로 돌아가라~)
+		// 아래와 같은 코드 => if(crtPage>0) { }else{crtPage=1;}
+		crtPage = (crtPage>0) ? crtPage : (crtPage=1);
 		
-		
-		
-		//listCnt에 따라 startRnum가 변함
-		//시작글 번호
+		// 시작글 번호 ->listCnt에 따라 startRnum가 변함
 		int startRnum = (crtPage-1)*listCnt+1; 
 		
-		//끝글 번호
+		// 끝글 번호
 		int endRnum = (startRnum + listCnt)-1; 
 		
 		//page 찍어보기 : 브라우저 주소 mysite4/board/list4?crtPage=1

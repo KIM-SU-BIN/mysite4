@@ -61,8 +61,8 @@
 
 							<!-- 제목 -->
 							<div class="form-group">
-								<label class="form-text" for="txt-title">제목</label> 
-								<input type="text" id="txt-title" name="title" value="${bVo.title }">
+								<label class="form-text" for="txt-title">제목</label> <input
+									type="text" id="txt-title" name="title" value="${bVo.title }">
 							</div>
 
 							<!-- 내용 -->
@@ -74,6 +74,8 @@
 							<a id="btn_cancel" href="/mysite4/board/list">취소</a>
 							<button id="btn_modify" type="submit">수정</button>
 
+							<input type="text" name="no" value="${boardVo.no }">
+
 						</form>
 						<!-- //form -->
 					</div>
@@ -82,10 +84,8 @@
 				<!-- //board -->
 			</div>
 			<!-- //content  -->
-
+			<div class="clear"></div>
 		</div>
-		<!-- //container  -->
-
 
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		<!-- //footer -->

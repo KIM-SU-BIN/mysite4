@@ -27,9 +27,13 @@ public class BoardController {
 	// 메소드
 	
 	// 메소드-일반
-	//리스트4 (일반 게시판 =====> + 페이징 + 검색)
+	//리스트4 (일반 게시판 =====> + 페이징 + 검색) 
 	@RequestMapping (value = "/list4", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list4(Model model, @RequestParam("crtPage") int crtPage) {
+	public String list4(Model model, 
+			@RequestParam(value = "crtPage", required = false, defaultValue = "1") int crtPage) {
+		//이렇게 쓰는 이유 : 사용자가 list4?crtPage=1 주소가 아닌 list4 만 쓸 수 있기 때문에 오류 방지를 위하여 사용
+		//required = false 오류 발생을 줄여주는 역할, defaultValue는 crtPage(현재페이지)라는 정보가 없을 경우 1페이지로 가라는 의미
+		
 		System.out.println("BoardController>list4");
 		
 		//getBoardList4() -> crtPage 넣어서 서비스로 넘겨주기
