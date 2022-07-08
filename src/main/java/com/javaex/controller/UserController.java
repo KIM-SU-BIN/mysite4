@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.UserService;
 import com.javaex.vo.UserVo;
 
 @Controller
-@RequestMapping(value="/user")
+@RequestMapping(value = "/user")
 public class UserController {
 
 	// 필드
@@ -40,22 +41,21 @@ public class UserController {
 
 		return "user/modifyForm";
 	}
-	
 
 	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modify(@ModelAttribute UserVo userVo, HttpSession session) {
 		System.out.println("UserController>modify()");
-		
-		//authUser에 저장되어 있는 no를 가져오기 위해서 씀 
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
+
+		// authUser에 저장되어 있는 no를 가져오기 위해서 씀
+		UserVo authUser = (UserVo) session.getAttribute("authUser");
 		int no = authUser.getNo();
-		
-		//authUser에 가져온 no를 저장하기
+
+		// authUser에 가져온 no를 저장하기
 		userVo.setNo(no);
-		
-		//정보 업데이트
+
+		// 정보 업데이트
 		userService.update(userVo);
-		
+
 		return "redirect:/main";
 	}
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 로그아웃 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
@@ -92,6 +92,14 @@ public class UserController {
 		System.out.println("UserController>joinForm()");
 
 		return "user/joinForm";
+	}
+
+	// 아이디 중복체크 (회원가입)
+	@ResponseBody
+	@RequestMapping(value = "/checkId", method = { RequestMethod.GET, RequestMethod.POST })
+	public String idCheck(@ModelAttribute UserVo userVo) {
+		System.out.println("UserController->idCheck()");
+		return userService.checkId(userVo.getId());
 	}
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 로그인 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//

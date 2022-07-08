@@ -59,11 +59,11 @@
 
 							<!-- 아이디 -->
 							<div class="form-group">
-								<label class="form-text" for="input-uid">아이디</label> <input
-									type="text" id="input-uid" name="id" value=""
-									placeholder="아이디를 입력하세요">
+								<label class="form-text" for="input-uid">아이디</label> 
+								<input type="text" id="input-uid" name="id" value="" placeholder="아이디를 입력하세요">
 
 								<button type="button" id="btnCheck">중복체크</button>
+								<p id="btnCheckResult"></p>
 							</div>
 
 							<!-- 비밀번호 -->
@@ -121,31 +121,42 @@
 
 </body>
 <script type="text/javascript">
-	$("#btnCheck").on("click", function() {
-		console.log("체크버튼 클릭");
-
-		var id = $("#input-uid").val();
-
-		console.log(id);
-
-		$.ajax({
-			url : "${pageContext.request.contextPath}/api/user/check",
-			type : "post",
-			contentType : "application/json",
-			data : JSON.stringify(id),
-			dataType : "json",
-			success : function(result) {
-				console.log(result);
-				if (result == true) {
-					$("#divCheck").html("아이디가 중복되었습니다.");
-				}
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
+$("#btnCheck").on("click", function() {
+	
+	var id = $("#input-uid").val();
+	console.log(id);
+	
+	var userVo = {
+			id : id
+	};
+	
+	$.ajax({
+		url : "${pageContext.request.contextPath}/user/checkId",
+		type : "post",
+		//contentType : "application/json",
+		data : userVo,
+		//dataType : "json",
+		success : function(result){
+			
+			//성공시 처리해야될 코드 작성
+			console.log(result);
+			if(id != null || id != "") {
+				
+				if(result == "success") {
+					$("#btnCheck").html("사용할 수 있는 아이디입니다.");
+					checkId = 1;
+					
+				} else {
+					$("#btnCheck").html("<font color='red'>사용할 수 없는 아이디입니다.</font>");
+				};
 			}
-		});
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+});
 
-	})
 
 	//아이디,비번 값 입력하지 않았을 때 경고창 띄우기
 	$("#join-form").on("submit", function() {
