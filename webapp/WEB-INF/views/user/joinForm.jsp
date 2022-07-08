@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,6 +121,32 @@
 
 </body>
 <script type="text/javascript">
+	$("#btnCheck").on("click", function() {
+		console.log("체크버튼 클릭");
+
+		var id = $("#input-uid").val();
+
+		console.log(id);
+
+		$.ajax({
+			url : "${pageContext.request.contextPath}/api/user/check",
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(id),
+			dataType : "json",
+			success : function(result) {
+				console.log(result);
+				if (result == true) {
+					$("#divCheck").html("아이디가 중복되었습니다.");
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+
+	})
+
 	//아이디,비번 값 입력하지 않았을 때 경고창 띄우기
 	$("#join-form").on("submit", function() {
 		console.log("회원가입 버튼 클릭");
@@ -148,7 +175,5 @@
 		//둘 다 맞을 경우 회원가입 진행
 		return true;
 	});
-
-
 </script>
 </html>
