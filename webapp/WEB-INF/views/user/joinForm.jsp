@@ -68,9 +68,8 @@
 
 							<!-- 비밀번호 -->
 							<div class="form-group">
-								<label class="form-text" for="input-pass">패스워드</label> <input
-									type="text" id="input-pass" name="password" value=""
-									placeholder="비밀번호를 입력하세요">
+								<label class="form-text" for="input-pass">패스워드</label> 
+								<input type="text" id="input-pass" name="password" value="" placeholder="비밀번호를 입력하세요">
 							</div>
 
 							<!-- 이름 -->
@@ -92,9 +91,9 @@
 
 							<!-- 약관동의 -->
 							<div class="form-group">
-								<span class="form-text">약관동의</span> <input type="checkbox"
-									id="chk-agree" value="" name=""> <label for="chk-agree">서비스
-									약관에 동의합니다.</label>
+								<span class="form-text">약관동의</span> 
+								<input type="checkbox" id="chk-agree" value="" name=""> 
+								<label for="chk-agree">서비스 약관에 동의합니다.</label>
 							</div>
 
 							<!-- 버튼영역 -->
