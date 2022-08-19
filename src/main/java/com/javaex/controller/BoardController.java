@@ -126,6 +126,7 @@ public class BoardController {
 	public String write(@ModelAttribute BoardVo boardVo) {
 		System.out.println("BoardController>write");
 
+		// 데이터 Vo에 저장하기 int count = boardService.write(boardVo);
 		boardService.write(boardVo);
 
 		return "redirect:/board/list";

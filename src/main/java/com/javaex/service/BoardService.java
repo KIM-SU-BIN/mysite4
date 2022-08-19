@@ -37,6 +37,7 @@ public class BoardService {
 
 		// 현재 페이지 -> 페이지가 -1 페이지 될 수 없음 (즉 0보다 작으면 무조건 1페이지로 돌아가라~)
 		// 아래와 같은 코드 => if(crtPage>0) { }else{crtPage=1;}
+		//? = else 의 개념으로 보면 됨
 		crtPage = (crtPage > 0) ? crtPage : (crtPage = 1);
 
 		// 시작글 번호 ->listCnt에 따라 startRnum가 변함

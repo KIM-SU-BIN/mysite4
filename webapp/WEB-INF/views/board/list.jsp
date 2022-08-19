@@ -61,14 +61,14 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${bList }" var="boardVo">
+								<c:forEach items="${bList}" var="boardVo">
 									<tr>
-										<td>${boardVo.no }</td>
-										<td class="text-left"><a href="./read/${boardVo.no }">${boardVo.title }</a></td>
-										<td>${BoardVo.name }</td>
-										<td>${boardVo.hit }</td>
-										<td>${BoardVo.date }</td>
-										<c:if test="${authUser.no eq boardVo.userNo }">
+										<td>${boardVo.no}</td>
+										<td class="text-left"><a href="./read/${boardVo.no}">${boardVo.title}</a></td>
+										<td>${BoardVo.name}</td>
+										<td>${boardVo.hit}</td>
+										<td>${BoardVo.date}</td>
+										<c:if test="${authUser.no eq boardVo.userNo}">
 											<td><a href="./delete/${boardVo.no }">[삭제]</a></td>
 										</c:if>
 
