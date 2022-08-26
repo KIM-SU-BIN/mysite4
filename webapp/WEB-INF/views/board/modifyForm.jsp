@@ -46,23 +46,23 @@
 							<input type="hidden" name="no" value="${bVo.no}">
 							<!-- 작성자 -->
 							<div class="form-group">
-								<span class="form-text">작성자</span> <span class="form-value">${bVo.name }</span>
+								<span class="form-text">작성자</span> <span class="form-value">${bVo.name}</span>
 							</div>
 
 							<!-- 조회수 -->
 							<div class="form-group">
-								<span class="form-text">조회수</span> <span class="form-value">${bVo.hit }</span>
+								<span class="form-text">조회수</span> <span class="form-value">${bVo.hit}</span>
 							</div>
 
 							<!-- 작성일 -->
 							<div class="form-group">
-								<span class="form-text">작성일</span> <span class="form-value">${bVo.date }</span>
+								<span class="form-text">작성일</span> <span class="form-value">${bVo.date}</span>
 							</div>
 
 							<!-- 제목 -->
 							<div class="form-group">
 								<label class="form-text" for="txt-title">제목</label> <input
-									type="text" id="txt-title" name="title" value="${bVo.title }">
+									type="text" id="txt-title" name="title" value="${bVo.title}">
 							</div>
 
 							<!-- 내용 -->
@@ -73,8 +73,6 @@
 
 							<a id="btn_cancel" href="/mysite4/board/list">취소</a>
 							<button id="btn_modify" type="submit">수정</button>
-
-							<input type="text" name="no" value="${boardVo.no }">
 
 						</form>
 						<!-- //form -->
