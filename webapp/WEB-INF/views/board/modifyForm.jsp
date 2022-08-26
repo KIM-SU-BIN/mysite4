@@ -71,7 +71,7 @@
 								${bVo.content}</textarea>
 							</div>
 
-							<a id="btn_cancel" href="/mysite4/board/list">취소</a>
+							<a id="btn_cancel" href="${pageContext.request.contextPath}/board/list">취소</a>
 							<button id="btn_modify" type="submit">수정</button>
 
 						</form>
